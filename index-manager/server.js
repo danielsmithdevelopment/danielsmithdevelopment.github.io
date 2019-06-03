@@ -1,63 +1,31 @@
-var express = require("express");
-var app = express();
+const express = require("express");
+const app = express();
 
 const config = require('config');
 
-let users = {
-    1: {
-        id: '1',
-        username: 'user1',
-    },
-    2: {
-        id: '2',
-        username: 'user2',
-    },
-};
-  
-let messages = {
-    1: {
-        id: '1',
-        text: 'Hello World',
-        userId: '1',
-    },
-    2: {
-        id: '2',
-        text: 'Bye World',
-        userId: '2',
-    },
-};
+const binance = require('node-binance-api')().options({
+    APIKEY: config.get('Binance.key'),
+    APISECRET: config.get('Binance.secret'),
+    useServerTime: true, // If you get timestamp errors, synchronize to server time at startup
+    // test: true // If you want to use sandbox mode where orders are simulated
+});
 
 function getBalances() {
     
     return new Promise((resolve, reject) => {
-        const binance = require('node-binance-api')().options({
-            APIKEY: config.get('Binance.key'),
-            APISECRET: config.get('Binance.secret'),
-            useServerTime: true, // If you get timestamp errors, synchronize to server time at startup
-            // test: true // If you want to use sandbox mode where orders are simulated
-        });
+        
         let balanceMap = {};
         binance.useServerTime(function() {
             binance.balance((error, balances) => {
                 if ( error ) return console.error(error);
-                // console.log("balances()", balances);
-                // console.log("BNB balance: ", balances.BNB.available);
                 getAssets().forEach(element => {
-                    // console.log('Balance for ',element,':',balances[element].available+balances[element].onOrder);
                     let sum = parseFloat(balances[element].available) + parseFloat(balances[element].onOrder);
-                    // console.log(sum);
                     balanceMap[element]=sum;
                 });
-        
-                // console.log(balanceMap);
                 resolve(balanceMap);
-                // return balanceMap;
             });
         });
-        // return balanceMap;
-        // return null;
     });
-    
     
 }
 
