@@ -29,7 +29,7 @@ p {
     margin: -8px;
     display: flex;
     align-items: center;
-    background-color: #1976d2;
+    background-color: white;
     color: white;
     font-weight: 600;
 }
@@ -66,8 +66,9 @@ svg.material-icons {
     width: auto;
 }
 
-svg.material-icons:not(:last-child) {
+svg.material-icons:not(:last-child), mat-icon.material-icons:not(:last-child) {
     margin-right: 8px;
+    color: #888;
 }
 
 .card svg.material-icons path {
@@ -174,6 +175,7 @@ a:hover {
     color: white;
     padding: 0 1rem 1rem;
     margin: 0;
+    white-space: normal;
 }
 
   footer {

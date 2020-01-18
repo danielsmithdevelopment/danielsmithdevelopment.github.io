@@ -1,5 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { DomSanitizer } from '@angular/platform-browser';
+import { MatIconRegistry } from '@angular/material/icon';
 
 @Component({
   selector: 'app-root',
@@ -13,8 +15,11 @@ export class AppComponent implements OnDestroy {
 
   private twitter: any;
 
-  constructor(private _router: Router) {
+  constructor(private _router: Router, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
     this.initTwitterWidget();
+    iconRegistry.addSvgIcon(
+      'vpn_key',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/img/vpn_key-24px.svg'));
   }
 
   initTwitterWidget() {

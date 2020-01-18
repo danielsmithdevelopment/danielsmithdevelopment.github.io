@@ -3,8 +3,11 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http'
 
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import {MatIconModule} from '@angular/material/icon';
+
 
 @NgModule({
   declarations: [
@@ -13,7 +16,9 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    PdfViewerModule
+    HttpClientModule,
+    PdfViewerModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
