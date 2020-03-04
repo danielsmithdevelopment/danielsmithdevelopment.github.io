@@ -1,0 +1,64 @@
+app:
+    greeting: Hello World
+
+blog-posts:
+    -   title: 
+            The Importance of Version Control
+        body: 
+            -   Sometimes when we want to experiment with a new technology,
+                we will set up an empty project and begin building. When the
+                piece of technology is small it may be possible to learn it
+                in a single sitting. Most of the time though, you will find
+                that the learning process is not so straightforward and easy
+                and may require many repeat visits. It helps if you can take
+                notes after these instances to keep track of what was learned
+                and to help you pick up next time where you left off.
+            -   Similarly, imagine you're playing a videogame and spent lots 
+                of time fighting your way through boss after boss until you
+                reach the end. The power goes out and your system shuts off 
+                right before the final battle. Assuming the game has a save 
+                function and you were proactive enough to use it, your data
+                will be safe at the last state you left it. If you don't
+                have save data backed up though you may lose all track of 
+                your progress and likely need to repeat some work.
+            -   Version control and git are like the save functionality for
+                code. Using version control allows you to safely track 
+                changes to your code over time and create save points to 
+                restore from. This is especially useful when testing
+                something new and you're not sure how it will affect other
+                existing code.
+            -   Luckily for us, version control is easy to set up. The easiest
+                way would be to navigate to github.com and sign up for a free
+                account. This account will allow you to set up both private and
+                public repositories to track your code. 
+            -   Create a repository called hello-world as your first example 
+                repository. You'll want to clone this repository to your local 
+                machine by clicking on the clone button and copying the URL for 
+                your new repository. From the command line in your home directory,
+                you'll want to run "git clone <the URL you copied>" which will 
+                clone the code from github onto your local machine in your home
+                directory in a folder with the same name as your repository.
+            -   This is your first repository and it is likely pretty empty right
+                now. That will change in a minute as we edit the README.md file to
+                add a description. These changes will be tracked by git version
+                control to log all additions and deletions from your project. Changes
+                to files need to be staged, committed, and pushed in order to update
+                the remote repository with the local changes you made.
+    -   title: 
+            Blog Title Example 1
+        body: 
+            -   Large amount of default boilerplate text
+                used to show that there can be significant content
+                shown in a script without any apparent issue 
+                resulting from the action of doing so. Hopefully 
+                it helps visualize what the possibilities are when
+                showing large amounts of default boilerplate text.
+    -   title: 
+            Blog Title Example 1
+        body: 
+            -   Large amount of default boilerplate text
+                used to show that there can be significant content
+                shown in a script without any apparent issue 
+                resulting from the action of doing so. Hopefully 
+                it helps visualize what the possibilities are when
+                showing large amounts of default boilerplate text.
