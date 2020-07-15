@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/manager-ui",
+    "public": "prod-dist",
     "ignore": [
       "firebase.json",
       "**/.*",
