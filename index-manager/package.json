@@ -18,7 +18,7 @@
   "homepage": "https://github.com/danielsmithdevelopment/index-manager#readme",
   "dependencies": {
     "config": "^3.0.1",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "js-yaml": "^3.13.1",
     "node-binance-api": "^0.8.7"
   }
