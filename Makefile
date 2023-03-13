@@ -17,7 +17,7 @@ NGTEST=$(NGCMD) test
 NPMINSTALL=$(NPMCMD) install
 OUTPUT_PATH=dist
 PROD_OUTPUT_PATH=prod-dist
-DOCKER_IMAGE=danielsmithdev/frontend
+DOCKER_IMAGE=danielsmithdev/see-the-greens-frontend
 DOCKER_TAG=latest
 HOST_PORT=4200
 
