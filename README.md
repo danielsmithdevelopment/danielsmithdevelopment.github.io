@@ -1,27 +1,50 @@
-# ManagerUi
+# danielsmithdevelopment.github.io
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.22.
+Personal site (Next.js) with **GitHub Pages** and an optional **container image** on **GHCR**.
 
-## Development server
+## Quick start
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+```bash
+cd personal-site
+npm install
+cp .env.example .env.local   # optional
+npm run dev
+```
 
-## Code scaffolding
+Or from the repo root: `make site-install && make site-dev`.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## CI / quality checks
 
-## Build
+On every **pull request** and **push** to **`main` or `master`**, Actions runs:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+1. **Lint** — `npm run lint` (TypeScript `tsc --noEmit`)
+2. **Tests** — `npm run test` (Vitest)
+3. **Build** — `next build` (static export)
+4. **Docker** — `docker build` to confirm the image still builds
 
-## Running unit tests
+From the repo root: `make site-lint`, `make site-test`, `make site-build`.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Deploy (push to default branch)
 
-## Running end-to-end tests
+This repo’s default branch is **`master`**. Pushing there (or to **`main`** if you rename later) runs the same checks, then:
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+- **GitHub Pages** — static `out/` from [the workflow](.github/workflows/deploy-personal-site.yml)
+- **GHCR** — Docker image pushed to  
+  `ghcr.io/<github-username>/<repo>/personal-site`  
+  tags: `latest` and short Git SHA
 
-## Further help
+**Pages:** Settings → **Pages** → source **GitHub Actions**.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+**Container:** open the repo’s **Packages** (or your profile → Packages), find `personal-site`, adjust visibility if you want it public. Pull example:
+
+```bash
+docker pull ghcr.io/danielsmithdevelopment/danielsmithdevelopment.github.io/personal-site:latest
+docker run --rm -p 8080:80 ghcr.io/danielsmithdevelopment/danielsmithdevelopment.github.io/personal-site:latest
+# site at http://localhost:8080
+```
+
+(Replace owner/repo with your GitHub username and repository name if different.)
+
+## Layout
+
+All site source lives under **`personal-site/`** (`Dockerfile`, tests, Next app). The repo root holds `Makefile`, workflows, and this README.

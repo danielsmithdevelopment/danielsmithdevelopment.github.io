@@ -1,0 +1,113 @@
+# CI: lint → test → build → (PR) verify Docker builds
+# On push to default branch (main or master): GitHub Pages deploy + push image to ghcr.io
+# Pages: Settings → Pages → Source = GitHub Actions.
+# GHCR: image is private by default; set package visibility / connect repo in Packages settings if needed.
+name: Deploy personal site
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  packages: write
+
+jobs:
+  ci:
+    name: Lint, test, build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: personal-site/package-lock.json
+
+      - name: Install dependencies
+        working-directory: personal-site
+        run: npm ci
+
+      - name: Lint (TypeScript)
+        working-directory: personal-site
+        run: npm run lint
+
+      - name: Unit tests
+        working-directory: personal-site
+        run: npm run test
+
+      - name: Build static site
+        working-directory: personal-site
+        env:
+          NEXT_PUBLIC_SITE_URL: https://danielsmithdevelopment.com
+        run: npm run build
+
+      - name: Verify Dockerfile builds
+        working-directory: personal-site
+        run: docker build -t personal-site:ci .
+
+      - uses: actions/upload-pages-artifact@v3
+        if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+        with:
+          path: personal-site/out
+
+  deploy-pages:
+    name: Publish to GitHub Pages
+    needs: ci
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v4
+
+  publish-ghcr:
+    name: Build & push container (ghcr.io)
+    needs: ci
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Docker metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository }}/personal-site
+          tags: |
+            type=raw,value=latest,enable=true
+            type=sha,format=short,prefix=
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: ./personal-site
+          file: ./personal-site/Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            NEXT_PUBLIC_SITE_URL=https://danielsmithdevelopment.com
+          cache-from: type=gha
+          cache-to: type=gha,mode=max

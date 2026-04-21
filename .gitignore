@@ -1,19 +1,7 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
-
-# compiled output
-/dist
-/tmp
-/out-tsc
-# Only exists if Bazel was run
-/bazel-out
+# See http://help.github.com/ignore-files/ for more about ignoring unwanted files.
 
 # dependencies
 /node_modules
-index-manager/node_modules
-
-# profiling files
-chrome-profiler-events*.json
-speed-measure-plugin*.json
 
 # IDEs and editors
 /.idea
@@ -32,17 +20,19 @@ speed-measure-plugin*.json
 !.vscode/extensions.json
 .history/*
 
-# misc
-/.sass-cache
-/connect.lock
+# misc logs / coverage
 /coverage
-/libpeerconnection.log
 npm-debug.log
 yarn-error.log
-testem.log
-/typings
 
 # System Files
 .DS_Store
 Thumbs.db
 
+# Next.js (personal-site)
+personal-site/.next/
+personal-site/out/
+.venv-resume/
+
+# Firebase (ignore if CLI artifacts reappear)
+.firebase/
