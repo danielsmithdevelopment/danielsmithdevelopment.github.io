@@ -27,7 +27,7 @@ export const site = {
 } as const
 
 /** Set to your profile URL to show LinkedIn on the home hero; leave null to hide. */
-export const linkedinProfile: string | null = null
+export const linkedinProfile: string | null = "https://linkedin.com/in/danielsmithdev"
 
 /** Home page — AI / agents angle for recruiting */
 export const aiHighlights = [
@@ -97,6 +97,57 @@ export type FeaturedRepo = {
   /** Highlight for recruiters (AI / agents / platform) */
   highlight: boolean
 }
+
+export type FeaturedLinkedInPost = {
+  /** Card headline */
+  title: string
+  /** Short excerpt for the site (full story on LinkedIn) */
+  description: string
+  linkedInUrl: string
+  /** Optional secondary links (docs, npm, repo) */
+  extraLinks?: { label: string; href: string }[]
+}
+
+/** Long-form posts to highlight on the home page — keep descriptions short; full text lives on LinkedIn. */
+export const featuredLinkedInPosts: FeaturedLinkedInPost[] = [
+  {
+    title: 'TrueNAS Scale homelab: recovery without SSH or console',
+    description:
+      'After a large transfer, the web UI and SMB dropped; an aggressive Thunderbolt hot-swap killed console access too. ClawQL memory_ingest in Cursor kept every hypothesis, command, and log in one place — routing table cleanup (Docker utun + duplicate LAN IPs), UI back, SSH enabled, pools still ONLINE.',
+    linkedInUrl:
+      'https://www.linkedin.com/posts/danielsmithdev_truenas-homelab-clawql-share-7452436561679491073-H1Jr',
+    extraLinks: [
+      {
+        label: 'Case study (docs)',
+        href: 'https://docs.clawql.com/case-studies/truenas-scale-corgicave-homelab',
+      },
+    ],
+  },
+  {
+    title: 'ClawQL has friends — MCP + gRPC ecosystem',
+    description:
+      'How pluggable gRPC transports for MCP fit enterprises on microservices: mcp-grpc-transport, ClawQL unified server, protoc-gen-go-mcp, gRPC-buf — and why a sovereign TypeScript hub plus multi-language tooling reduces protocol friction for agentic workloads.',
+    linkedInUrl:
+      'https://www.linkedin.com/posts/danielsmithdev_clawql-has-friends-see-how-it-fits-into-share-7450927468938444800-eXMK',
+  },
+  {
+    title: 'Announcing mcp-grpc-transport v0.1.0',
+    description:
+      'Production-ready gRPC for the Model Context Protocol on @modelcontextprotocol/sdk: protobuf payloads, unary + bidirectional streaming, grpc.health.v1 probes, mTLS, optional JSON-RPC migration — generic for any MCP server.',
+    linkedInUrl:
+      'https://www.linkedin.com/posts/danielsmithdev_mcp-grpc-ai-share-7450910808965844992-u7Zm',
+    extraLinks: [
+      {
+        label: 'npm',
+        href: 'https://www.npmjs.com/package/mcp-grpc-transport',
+      },
+      {
+        label: 'ClawQL repo',
+        href: 'https://github.com/danielsmithdevelopment/ClawQL',
+      },
+    ],
+  },
+]
 
 /** Curated from github.com/danielsmithdevelopment — edit to reorder or swap */
 export const featuredRepos: FeaturedRepo[] = [
