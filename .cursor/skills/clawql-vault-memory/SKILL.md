@@ -19,6 +19,12 @@ If **ClawQL MCP** is not configured or **`CLAWQL_OBSIDIAN_VAULT_PATH`** is unset
 
 **Never store secrets:** tokens, API keys, passwords, private keys, or raw session cookies. Summarize redacted config instead.
 
+### Cursor agent: `call_mcp_tool` `server` parameter
+
+The **`server`** argument is **not** the `"clawql"` key from `.cursor/mcp.json`. Cursor assigns a generated **`serverIdentifier`** (see `SERVER_METADATA.json` next to the MCP descriptor under `~/.cursor/projects/.../mcps/.../`). **Read `serverIdentifier` from that file** and pass it verbatim to `call_mcp_tool`—do not guess `clawql`, `user-clawql`, or `workspace-clawql`. Discovery command:
+
+`find ~/.cursor/projects -path '*mcps*clawql*' -name SERVER_METADATA.json 2>/dev/null | head -1`
+
 ---
 
 ## Tool capabilities (what the server actually does)

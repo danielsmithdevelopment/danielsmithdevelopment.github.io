@@ -18,7 +18,7 @@ const nextConfig = {
     root: __dirname,
   },
   outputFileTracingIncludes: {
-    '/articles/*': ['./src/app/articles/**/*.mdx'],
+    '/articles/*': ['./src/app/articles/**/*.tsx'],
   },
 }
 

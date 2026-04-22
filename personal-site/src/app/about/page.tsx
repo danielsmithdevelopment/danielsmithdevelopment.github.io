@@ -45,7 +45,7 @@ function SocialLink({
 
 export const metadata: Metadata = {
   title: 'About',
-  description: site.bioShort,
+  description: site.description,
 }
 
 export default function About() {
@@ -64,45 +64,61 @@ export default function About() {
         </div>
         <div className="lg:order-first lg:row-span-2">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-            I&apos;m {site.name}. I build platforms where{' '}
+            I&apos;m {site.name}. I build{' '}
             <span className="text-teal-600 dark:text-teal-400">
-              AI tooling meets production
+              resilient infrastructure for fintech and Web3
             </span>
             .
           </h1>
           <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
             <p>
-              I&apos;m a backend platform engineer based in {site.location}. My
-              recent work spans multi-region Kubernetes and service mesh, chaos
-              engineering, and cost-efficient migrations — including moving
-              workloads from Lambda to EKS with a large overall cost reduction
-              after tuning node groups and tenancies.
+              Senior Backend Platform Engineer with 7+ years building resilient,
+              large-scale infrastructure for fintech and Web3 platforms. Based in{' '}
+              {site.location}.
             </p>
             <p>
-              On the AI side, I ship and maintain{' '}
+              Most recently at Phantom I architected multi-region Kubernetes +
+              CockroachDB failover systems, reduced infrastructure costs 65%, and
+              shipped two production AI tools: an automated Slack → Linear ticket
+              bot powered by LLMs and an official company-wide knowledge bot
+              (hackathon → maintained product) that ingests Notion, Linear,
+              GitHub, and Slack for natural-language queries.
+            </p>
+            <p>
+              I care deeply about agentic AI and developer experience. I recently
+              open-sourced{' '}
               <Link
                 href="https://github.com/danielsmithdevelopment/ClawQL"
                 className="font-medium text-teal-600 underline decoration-teal-500/40 underline-offset-2 hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300"
               >
                 ClawQL
               </Link>
-              , an MCP server that helps LLM agents discover and execute API
-              operations using OpenAPI-family specs and curated provider graphs —
-              so agents do not need whole API definitions in context. I also
-              experiment with on-device ML and GenAI UX via my fork of Google&apos;s
-              gallery sample.
+              , an MCP server that slashes AI token usage by 99% on remote APIs,
+              and contributed agentic web-search + MCP skills to Google&apos;s AI Edge
+              Gallery. I also experiment with on-device ML and GenAI UX via my
+              fork of the gallery sample.
             </p>
-            <p>
-              Earlier roles included blockchain systems engineering (indexing,
-              multi-chain infrastructure), SRE-style progressive delivery on
-              Kubernetes (canary, Istio, zero-trust patterns), and financial
-              blockchain operations (including CBDC-related state machines).
+            <p className="font-medium text-zinc-700 dark:text-zinc-300">
+              Previously:
             </p>
+            <ul className="mt-2 list-disc space-y-2 pl-5">
+              <li>
+                Led blockchain infrastructure and multi-chain indexing at
+                DraftKings Marketplace
+              </li>
+              <li>
+                Designed Progressive Deployments, Canary Testing, and Zero Trust
+                security at Upgrade Inc.
+              </li>
+              <li>
+                Built the core state machine for the Bahamian Sand Dollar CBDC at
+                IBM Blockchain
+              </li>
+            </ul>
             <p>
-              I&apos;m actively looking for roles where I can combine this platform
-              background with product-facing AI: agents, evals, developer tooling,
-              or MCP-style integrations — with the same rigor around reliability,
-              security, and observability that production systems demand.
+              Open to conversations on platform engineering, AI agents, Kubernetes,
+              and scalable AI infrastructure. Currently seeking new opportunities —
+              happy to connect!
             </p>
           </div>
         </div>

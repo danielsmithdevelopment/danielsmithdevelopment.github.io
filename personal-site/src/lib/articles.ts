@@ -1,6 +1,6 @@
-import glob from 'fast-glob'
+import { featuredLinkedInPosts, site } from '@/lib/site'
 
-interface Article {
+export interface Article {
   title: string
   description: string
   author: string
@@ -11,26 +11,29 @@ export interface ArticleWithSlug extends Article {
   slug: string
 }
 
-async function importArticle(
-  articleFilename: string,
-): Promise<ArticleWithSlug> {
-  let { article } = (await import(`../app/articles/${articleFilename}`)) as {
-    default: React.ComponentType
-    article: Article
-  }
-
-  return {
-    slug: articleFilename.replace(/(\/page)?\.mdx$/, ''),
-    ...article,
-  }
+/** Articles list and /articles/<slug> pages — sourced only from `featuredLinkedInPosts` in site.ts */
+export async function getAllArticles(): Promise<ArticleWithSlug[]> {
+  return featuredLinkedInPosts
+    .map((post) => ({
+      slug: post.slug,
+      title: post.title,
+      description: post.description,
+      author: site.name,
+      date: post.date,
+    }))
+    .sort((a, z) => +new Date(z.date) - +new Date(a.date))
 }
 
-export async function getAllArticles() {
-  let articleFilenames = await glob('*/page.mdx', {
-    cwd: './src/app/articles',
-  })
-
-  let articles = await Promise.all(articleFilenames.map(importArticle))
-
-  return articles.sort((a, z) => +new Date(z.date) - +new Date(a.date))
+export function getArticleBySlug(slug: string): ArticleWithSlug | undefined {
+  let post = featuredLinkedInPosts.find((p) => p.slug === slug)
+  if (!post) {
+    return undefined
+  }
+  return {
+    slug: post.slug,
+    title: post.title,
+    description: post.description,
+    author: site.name,
+    date: post.date,
+  }
 }

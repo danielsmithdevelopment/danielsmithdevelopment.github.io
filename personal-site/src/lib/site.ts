@@ -1,10 +1,13 @@
+import { featuredLinkedInPostBodies } from '@/lib/featuredLinkedInPostBodies'
+
 /** Site-wide copy and links — update here to refresh resume CTAs and featured work. */
 export const site = {
   name: 'Daniel Smith',
-  tagline: 'Platform & AI tooling engineer.',
+  tagline:
+    'Senior Backend Platform Engineer | Kubernetes • AI Agents • MCP • LLM Integrations | Ex-Phantom, Ex-DraftKings, IBM Blockchain | Open to Opportunities',
   /** OpenGraph / meta default description */
   description:
-    'Senior backend platform engineer focused on production Kubernetes, AI agents, and MCP tooling. Open to roles where AI meets reliable infrastructure.',
+    'Senior Backend Platform Engineer with 7+ years architecting resilient Kubernetes platforms, AI-powered tools, and multi-cloud DevOps solutions. Actively seeking new opportunities.',
   /** Public site URL (set NEXT_PUBLIC_SITE_URL in CI for canonical links and RSS) */
   url:
     (typeof process !== 'undefined' && process.env.NEXT_PUBLIC_SITE_URL) ||
@@ -14,7 +17,7 @@ export const site = {
   phoneDisplay: '626.223.0629',
   hireable: true,
   bioShort:
-    'I build production platforms and AI agent infrastructure — from multi-region Kubernetes and service mesh to MCP servers that let agents search and execute against APIs without bloating context.',
+    'Senior Backend Platform Engineer with 7+ years architecting resilient Kubernetes platforms, AI-powered tools, and multi-cloud DevOps solutions. Delivered large-scale migrations that cut costs 65%, boosted developer experience 125%+, and enabled zero-downtime operations. Recently shipped production AI integrations at Phantom and open-sourced MCP/agentic contributions. Passionate about scalable, intelligent infrastructure and actively seeking new opportunities.',
   github: {
     username: 'danielsmithdevelopment',
     url: 'https://github.com/danielsmithdevelopment',
@@ -44,7 +47,7 @@ export const aiHighlights = [
   {
     title: 'Platform at scale',
     body:
-      'At Phantom: multi-region Kubernetes, Istio, and CockroachDB; chaos engineering and K6 load testing; developer-experience scores up 125%+ and 133% on key CoreDX measures; 65% infra cost reduction after a Lambda-to-K8s migration.',
+      'Most recently at Phantom I architected multi-region Kubernetes, Istio, and CockroachDB failover systems; chaos engineering and K6 load testing; developer-experience scores up 125%+ and 133% on key CoreDX measures; and a 65% infra cost reduction after a Lambda-to-K8s migration.',
   },
 ] as const
 
@@ -99,21 +102,30 @@ export type FeaturedRepo = {
 }
 
 export type FeaturedLinkedInPost = {
+  /** Stable path under /articles/<slug> (must stay URL-safe) */
+  slug: string
+  /** ISO date for the articles index (edit to match the LinkedIn post if you like) */
+  date: string
   /** Card headline */
   title: string
-  /** Short excerpt for the site (full story on LinkedIn) */
+  /** Short excerpt for cards and meta (full narrative is in `body`) */
   description: string
+  /** Full post text mirrored from LinkedIn for reading on this site (see `featuredLinkedInPostBodies.ts`) */
+  body: string
   linkedInUrl: string
   /** Optional secondary links (docs, npm, repo) */
   extraLinks?: { label: string; href: string }[]
 }
 
-/** Long-form posts to highlight on the home page — keep descriptions short; full text lives on LinkedIn. */
+/** Home page cards + /articles — metadata here; full post copy in `featuredLinkedInPostBodies.ts`. */
 export const featuredLinkedInPosts: FeaturedLinkedInPost[] = [
   {
+    slug: 'truenas-scale-homelab-recovery',
+    date: '2026-01-20',
     title: 'TrueNAS Scale homelab: recovery without SSH or console',
     description:
       'After a large transfer, the web UI and SMB dropped; an aggressive Thunderbolt hot-swap killed console access too. ClawQL memory_ingest in Cursor kept every hypothesis, command, and log in one place — routing table cleanup (Docker utun + duplicate LAN IPs), UI back, SSH enabled, pools still ONLINE.',
+    body: featuredLinkedInPostBodies['truenas-scale-homelab-recovery'],
     linkedInUrl:
       'https://www.linkedin.com/posts/danielsmithdev_truenas-homelab-clawql-share-7452436561679491073-H1Jr',
     extraLinks: [
@@ -124,16 +136,22 @@ export const featuredLinkedInPosts: FeaturedLinkedInPost[] = [
     ],
   },
   {
+    slug: 'clawql-mcp-grpc-ecosystem',
+    date: '2026-01-10',
     title: 'ClawQL has friends — MCP + gRPC ecosystem',
     description:
       'How pluggable gRPC transports for MCP fit enterprises on microservices: mcp-grpc-transport, ClawQL unified server, protoc-gen-go-mcp, gRPC-buf — and why a sovereign TypeScript hub plus multi-language tooling reduces protocol friction for agentic workloads.',
+    body: featuredLinkedInPostBodies['clawql-mcp-grpc-ecosystem'],
     linkedInUrl:
       'https://www.linkedin.com/posts/danielsmithdev_clawql-has-friends-see-how-it-fits-into-share-7450927468938444800-eXMK',
   },
   {
+    slug: 'mcp-grpc-transport-v0-1-0',
+    date: '2026-01-05',
     title: 'Announcing mcp-grpc-transport v0.1.0',
     description:
       'Production-ready gRPC for the Model Context Protocol on @modelcontextprotocol/sdk: protobuf payloads, unary + bidirectional streaming, grpc.health.v1 probes, mTLS, optional JSON-RPC migration — generic for any MCP server.',
+    body: featuredLinkedInPostBodies['mcp-grpc-transport-v0-1-0'],
     linkedInUrl:
       'https://www.linkedin.com/posts/danielsmithdev_mcp-grpc-ai-share-7450910808965844992-u7Zm',
     extraLinks: [

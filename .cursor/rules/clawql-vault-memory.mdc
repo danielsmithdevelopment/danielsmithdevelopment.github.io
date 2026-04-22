@@ -16,6 +16,14 @@ Do not store secrets, credentials, or private keys. If vault tools fail (path un
 
 ## `call_mcp_tool` (agent API) — server name
 
-Cursor’s agent bridge does **not** accept the short key from `mcp.json` (e.g. `clawql`). Pass **`serverIdentifier`** from `SERVER_METADATA.json` for this ClawQL connection — **not** `serverName`.
+**You cannot use the key from `.cursor/mcp.json`** (e.g. `"clawql"`). Cursor’s agent bridge registers MCP under a **generated `serverIdentifier`** that you do **not** control and that **does not match** the JSON key. Guessing names like `user-…` or `workspace-…` is unreliable—identifiers in the wild include forms like **`project-0-<workspace-slug>-clawql`**.
 
-If the identifier is unknown: from the repo machine, locate it once, e.g. `find ~/.cursor/projects -path '*mcps*clawql*' -name SERVER_METADATA.json 2>/dev/null | head -1` and read the `serverIdentifier` field. The value stays the same across sessions for this workspace unless the project folder path or MCP entry changes.
+**Always** pass the string from **`serverIdentifier`** inside:
+
+`~/.cursor/projects/<this-workspace>/mcps/<…-clawql>/SERVER_METADATA.json`
+
+For this repo’s current layout, that file is typically:
+
+`~/.cursor/projects/Users-danielsmith-danielsmithdevelopment-github-io/mcps/project-0-danielsmithdevelopment.github.io-clawql/SERVER_METADATA.json`
+
+If tools fail with “server does not exist”: **do not** argue with the user about MCP config—**read that JSON** (or run `find ~/.cursor/projects -path '*mcps*clawql*' -name SERVER_METADATA.json 2>/dev/null | head -1`) and use the **`serverIdentifier`** value exactly. Re-check after renaming the repo folder or moving the project, because the slug in the path can change.
