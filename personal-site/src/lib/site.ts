@@ -124,7 +124,7 @@ export const featuredLinkedInPosts: FeaturedLinkedInPost[] = [
     date: '2026-01-20',
     title: 'TrueNAS Scale homelab: recovery without SSH or console',
     description:
-      'After a large transfer, the web UI and SMB dropped; an aggressive Thunderbolt hot-swap killed console access too. ClawQL memory_ingest in Cursor kept every hypothesis, command, and log in one place — routing table cleanup (Docker utun + duplicate LAN IPs), UI back, SSH enabled, pools still ONLINE.',
+      'After a large transfer, the web UI and SMB dropped; an aggressive Thunderbolt hot-swap killed console access too. ClawQL memory_ingest in editor agent kept every hypothesis, command, and log in one place — routing table cleanup (Docker utun + duplicate LAN IPs), UI back, SSH enabled, pools still ONLINE.',
     body: featuredLinkedInPostBodies['truenas-scale-homelab-recovery'],
     linkedInUrl:
       'https://www.linkedin.com/posts/danielsmithdev_truenas-homelab-clawql-share-7452436561679491073-H1Jr',

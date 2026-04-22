@@ -14,3 +14,7 @@ When merging pull requests (GitHub / `gh pr merge`):
 - **Only then** run `gh pr merge <n> --merge` (merge-after-green). Prefer this sequence over trusting `--auto` unless you have verified branch protection blocks merge until required checks pass.
 
 If branch protection blocks merge until green, do not bypass it. Do not assume checks are optional.
+
+## Commit messages — no editor agent branding
+
+Do **not** add trailers such as **`Made-with: editor agent`**, **`Co-authored-by: editor agent`**, or similar tool-generated attribution to commits in this repository. If an editor or hook injects them, remove before `git commit` / amend before push.
