@@ -10,10 +10,11 @@ import {
 import { type ArticleWithSlug, getAllArticles } from '@/lib/articles'
 import {
   aiHighlights,
+  featuredProjects,
   featuredLinkedInPosts,
   linkedinProfile,
   site,
-  type FeaturedLinkedInPost,
+  type FeaturedProject,
   type WorkRole,
   workRoles,
 } from '@/lib/site'
@@ -69,44 +70,9 @@ function SparklesIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   )
 }
 
-function LinkedInFeaturedPost({ post }: { post: FeaturedLinkedInPost }) {
-  return (
-    <Card as="article">
-      <Card.Eyebrow decorate>LinkedIn</Card.Eyebrow>
-      <Card.Title as="h3">{post.title}</Card.Title>
-      <Card.Description>{post.description}</Card.Description>
-      <div className="relative z-10 mt-4 flex flex-col gap-2 text-sm">
-        <Link
-          href={post.linkedInUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex w-fit font-medium text-teal-600 underline decoration-teal-500/30 underline-offset-2 hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300"
-        >
-          View post on LinkedIn
-        </Link>
-        {post.extraLinks?.length ? (
-          <p className="text-zinc-500 dark:text-zinc-400">
-            {post.extraLinks.map((link, i) => (
-              <span key={link.href}>
-                {i > 0 ? ' · ' : null}
-                <Link
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-medium text-teal-600 underline decoration-teal-500/30 underline-offset-2 hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300"
-                >
-                  {link.label}
-                </Link>
-              </span>
-            ))}
-          </p>
-        ) : null}
-      </div>
-    </Card>
-  )
-}
-
 function Article({ article }: { article: ArticleWithSlug }) {
+  let linkedInPost = featuredLinkedInPosts.find((post) => post.slug === article.slug)
+
   return (
     <Card as="article">
       <Card.Title href={`/articles/${article.slug}`}>
@@ -116,7 +82,59 @@ function Article({ article }: { article: ArticleWithSlug }) {
         {formatDate(article.date)}
       </Card.Eyebrow>
       <Card.Description>{article.description}</Card.Description>
+      {linkedInPost ? (
+        <div className="relative z-10 mt-4 flex flex-col gap-2 text-sm">
+          <Link
+            href={linkedInPost.linkedInUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex w-fit font-medium text-teal-600 underline decoration-teal-500/30 underline-offset-2 hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300"
+          >
+            View post on LinkedIn
+          </Link>
+          {linkedInPost.extraLinks?.length ? (
+            <p className="text-zinc-500 dark:text-zinc-400">
+              {linkedInPost.extraLinks.map((link, i) => (
+                <span key={link.href}>
+                  {i > 0 ? ' · ' : null}
+                  <Link
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium text-teal-600 underline decoration-teal-500/30 underline-offset-2 hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300"
+                  >
+                    {link.label}
+                  </Link>
+                </span>
+              ))}
+            </p>
+          ) : null}
+        </div>
+      ) : null}
       <Card.Cta>Read article</Card.Cta>
+    </Card>
+  )
+}
+
+function FeaturedProjectCard({ project }: { project: FeaturedProject }) {
+  return (
+    <Card as="article">
+      <Card.Eyebrow decorate>Project</Card.Eyebrow>
+      <Card.Title href={project.href}>{project.name}</Card.Title>
+      <Card.Description>{project.description}</Card.Description>
+      <div className="relative z-10 mt-4 flex flex-col gap-2 text-sm">
+        <p className="text-zinc-500 dark:text-zinc-400">{project.label}</p>
+        {project.extraLink ? (
+          <Link
+            href={project.extraLink.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex w-fit font-medium text-teal-600 underline decoration-teal-500/30 underline-offset-2 hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300"
+          >
+            {project.extraLink.label}
+          </Link>
+        ) : null}
+      </div>
     </Card>
   )
 }
@@ -272,7 +290,6 @@ export default async function Home() {
         <div className="max-w-2xl">
           <p className="text-base font-medium text-teal-600 dark:text-teal-400">
             {site.location}
-            {site.hireable ? ' · Open to work' : ''}
           </p>
           <h1 className="mt-3 text-2xl font-bold tracking-tight text-zinc-800 sm:text-3xl lg:text-4xl dark:text-zinc-100 leading-snug">
             {site.tagline}
@@ -307,22 +324,18 @@ export default async function Home() {
           </div>
         </div>
       </Container>
-      <Container className="mt-20 md:mt-24">
+      <Container className="mt-24 md:mt-28">
         <div className="mx-auto max-w-2xl lg:mx-0">
           <h2 className="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
-            Featured on LinkedIn
+            Featured projects
           </h2>
           <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-            Recent posts on homelab recovery, MCP + gRPC, and shipping{' '}
-            <code className="rounded bg-zinc-100 px-1 py-0.5 text-xs dark:bg-zinc-800">
-              mcp-grpc-transport
-            </code>
-            .
+            ClawQL, CoachellaPlus, and gRPC MCP Transport.
           </p>
         </div>
         <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-          {featuredLinkedInPosts.map((post) => (
-            <LinkedInFeaturedPost key={post.linkedInUrl} post={post} />
+          {featuredProjects.map((project) => (
+            <FeaturedProjectCard key={project.name} project={project} />
           ))}
         </div>
       </Container>

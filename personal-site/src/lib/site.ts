@@ -4,7 +4,7 @@ import { featuredLinkedInPostBodies } from '@/lib/featuredLinkedInPostBodies'
 export const site = {
   name: 'Daniel Smith',
   tagline:
-    'Senior Backend Platform Engineer | Kubernetes • AI Agents • MCP • LLM Integrations | Ex-Phantom, Ex-DraftKings, IBM Blockchain | Open to Opportunities',
+    'Senior Backend Platform Engineer | Kubernetes • AI Agents • MCP • LLM Integrations',
   /** OpenGraph / meta default description */
   description:
     'Senior Backend Platform Engineer with 7+ years architecting resilient Kubernetes platforms, AI-powered tools, and multi-cloud DevOps solutions. Actively seeking new opportunities.',
@@ -101,6 +101,14 @@ export type FeaturedRepo = {
   highlight: boolean
 }
 
+export type FeaturedProject = {
+  name: string
+  description: string
+  href: string
+  label: string
+  extraLink?: { label: string; href: string }
+}
+
 export type FeaturedLinkedInPost = {
   /** Stable path under /articles/<slug> (must stay URL-safe) */
   slug: string
@@ -164,6 +172,35 @@ export const featuredLinkedInPosts: FeaturedLinkedInPost[] = [
         href: 'https://github.com/danielsmithdevelopment/ClawQL',
       },
     ],
+  },
+]
+
+/** Home page spotlight projects */
+export const featuredProjects: FeaturedProject[] = [
+  {
+    name: 'ClawQL',
+    description:
+      'Open-source MCP server for searching OpenAPI/Swagger/Discovery specs and executing operations with lean, token-aware responses.',
+    href: 'https://github.com/danielsmithdevelopment/ClawQL',
+    label: 'GitHub',
+  },
+  {
+    name: 'CoachellaPlus',
+    description:
+      'Full-stack TypeScript product work focused on shipping end-to-end web experiences.',
+    href: 'https://github.com/danielsmithdevelopment/CoachellaPlus',
+    label: 'GitHub',
+  },
+  {
+    name: 'gRPC MCP Transport',
+    description:
+      'Production-ready gRPC transport for MCP with streaming, health checks, and enterprise-friendly deployment support.',
+    href: 'https://www.npmjs.com/package/mcp-grpc-transport',
+    label: 'npm',
+    extraLink: {
+      label: 'GitHub repo',
+      href: 'https://github.com/danielsmithdevelopment/ClawQL',
+    },
   },
 ]
 
