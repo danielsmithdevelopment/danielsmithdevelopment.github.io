@@ -186,7 +186,7 @@ export const featuredLinkedInPosts: FeaturedLinkedInPost[] = [
   },
   {
     slug: 'agentic-ai-security-supply-chain-and-admission',
-    date: '2026-05-11',
+    date: '2026-05-06',
     title:
       'Agentic AI Security, Part 1: Supply Chain, Golden Images, and Admission Control',
     description:
@@ -205,7 +205,7 @@ export const featuredLinkedInPosts: FeaturedLinkedInPost[] = [
   },
   {
     slug: 'agentic-ai-security-identity-zero-trust',
-    date: '2026-05-10',
+    date: '2026-05-07',
     title:
       'Agentic AI Security, Part 2: Identity, Least Privilege, and Zero Trust',
     description:
@@ -224,7 +224,7 @@ export const featuredLinkedInPosts: FeaturedLinkedInPost[] = [
   },
   {
     slug: 'agentic-ai-security-mesh-sandbox-mcp',
-    date: '2026-05-09',
+    date: '2026-05-08',
     title:
       'Agentic AI Security, Part 3: Service Mesh, Sandboxing, and MCP Runtime Protection',
     description:
@@ -243,7 +243,7 @@ export const featuredLinkedInPosts: FeaturedLinkedInPost[] = [
   },
   {
     slug: 'agentic-ai-security-data-models-observability',
-    date: '2026-05-08',
+    date: '2026-05-09',
     title:
       'Agentic AI Security, Part 4: Data Classification, Model Integrity, and Runtime Monitoring',
     description:
@@ -262,7 +262,7 @@ export const featuredLinkedInPosts: FeaturedLinkedInPost[] = [
   },
   {
     slug: 'agentic-ai-security-operations-and-production',
-    date: '2026-05-07',
+    date: '2026-05-10',
     title:
       'Agentic AI Security, Part 5: Incident Response, Automation, GPU, Workstations, and Production',
     description:
@@ -281,7 +281,7 @@ export const featuredLinkedInPosts: FeaturedLinkedInPost[] = [
   },
   {
     slug: 'agentic-ai-security-governance-and-owasp-agentic',
-    date: '2026-05-06',
+    date: '2026-05-11',
     title:
       'Agentic AI Security, Part 6: Threat Modeling, OWASP Agentic Top 10, and Quarterly Review',
     description:

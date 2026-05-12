@@ -17,13 +17,18 @@ description: >-
 
 If **ClawQL MCP** is not configured or **`CLAWQL_OBSIDIAN_VAULT_PATH`** is unset, say so briefly and continue without blocking.
 
+### Cursor Agent: `call_mcp_tool` server parameter
+
+Your `mcp.json` key can stay **`clawql`** (that is what Settings / docs refer to). The **agent `call_mcp_tool` API** does **not** accept that bare string: Cursor registers the server under a **scoped id** derived from where the config lives:
+
+| Config file | Typical `call_mcp_tool` **`server`** value |
+|-------------|--------------------------------------------|
+| `~/.cursor/mcp.json` | **`user-clawql`** |
+| `${workspaceFolder}/.cursor/mcp.json` | **`workspace-clawql`** |
+
+There is **no** supported `mcp.json` field to rename this to bare `clawql` for `call_mcp_tool`—the prefix is host behavior to avoid collisions (e.g. the same key in user vs project config). If both files define `clawql`, two scoped servers can exist; use the one that matches where you configured ClawQL for this workspace.
+
 **Never store secrets:** tokens, API keys, passwords, private keys, or raw session cookies. Summarize redacted config instead.
-
-### editor agent agent: `call_mcp_tool` `server` parameter
-
-The **`server`** argument is **not** the `"clawql"` key from `.editor/mcp.json`. editor agent assigns a generated **`serverIdentifier`** (see `SERVER_METADATA.json` next to the MCP descriptor under `~/.editor/projects/.../mcps/.../`). **Read `serverIdentifier` from that file** and pass it verbatim to `call_mcp_tool`—do not guess `clawql`, `user-clawql`, or `workspace-clawql`. Discovery command:
-
-`find ~/.editor/projects -path '*mcps*clawql*' -name SERVER_METADATA.json 2>/dev/null | head -1`
 
 ---
 
@@ -37,6 +42,7 @@ The **`server`** argument is **not** the `"clawql"` key from `.editor/mcp.json`.
 | **`insights`**     | Primary prose. Markdown is fine. This is where **semantic tagging** and structure live (see below).                                                                                |
 | **`conversation`** | Longer transcript or chat summary; stored in a fenced block under **Conversation**.                                                                                                |
 | **`toolOutputs`**  | Verbatim logs: command output, errors, JSON snippets, diffs—each string becomes a block; multiple strings are separated for readability.                                           |
+| **`toolOutputsFile`** | **Server-side only:** a path (absolute or relative to the ClawQL process **`cwd`**) the **MCP server** reads as UTF-8 and uses as **`toolOutputs`**. Use for **large** bodies so the model only passes a **short path** in the tool call (not the file contents). Must fall under an allowlist (**`CLAWQL_MEMORY_INGEST_FILE_ROOTS`**, or default realpath of **`cwd`**). If both **`toolOutputsFile`** and **`toolOutputs`** are set, the **file wins**. Disable reads with **`CLAWQL_MEMORY_INGEST_FILE=0`**. |
 | **`wikilinks`**    | List of **other vault note titles** (plain names; `[[brackets]]` optional). Rendered as **`## Related`** with `- [[Note Name]]` bullets—this is the **graph** for Obsidian.        |
 | **`sessionId`**    | Optional label for the section header (threads multi-step work).                                                                                                                   |
 | **`append`**       | Default **true**: new section appended to an existing file with the same slug. Set **false** only to replace the file body (rare).                                                 |
@@ -58,9 +64,11 @@ Results include path, score, depth, reason (`keyword` | `link` | `vector`), and 
 
 ### Optional `cache` (not vault)
 
-When **`CLAWQL_ENABLE_CACHE`** is set, the server exposes **`cache`**: **ephemeral** key/value in this process, **LRU**-bounded, **no** Markdown / **`memory.db`**. Use it for session scratch state only. For durable notes and graph recall, use **`memory_ingest`** / **`memory_recall`**. Repo reference: **[`docs/cache-tool.md`](../../../docs/cache-tool.md)** (relative from this skill file in the ClawQL repo).
+**`cache`** (**ClawQL Core**, always registered) is **ephemeral** key/value in this process, **LRU**-bounded, **no** Markdown / **`memory.db`**. **`memory_ingest`** / **`memory_recall`** are on by default; set **`CLAWQL_ENABLE_MEMORY=0`** to hide, and use a configured vault to persist. Repo reference: **[`docs/mcp/cache-tool.md`](../../../docs/mcp/cache-tool.md)**.
 
-When **`CLAWQL_ENABLE_AUDIT`** is set, the server exposes **`audit`**: **ephemeral** in-process event ring buffer — **not** the vault and **not** compliance-grade alone. Use **`memory_ingest`** for durable, human-inspectable trails. Repo reference: **[`docs/enterprise-mcp-tools.md`](../../../docs/enterprise-mcp-tools.md)** ([#89](https://github.com/danielsmithdevelopment/ClawQL/issues/89)).
+The server always exposes **`audit`**: **ephemeral** in-process event ring buffer — **not** the vault and **not** compliance-grade alone. Use **`memory_ingest`** for durable, human-inspectable trails. Repo reference: **[`docs/mcp/enterprise-mcp-tools.md`](../../../docs/mcp/enterprise-mcp-tools.md)** ([#89](https://github.com/danielsmithdevelopment/ClawQL/issues/89)).
+
+When **`CLAWQL_ENABLE_NOTIFY`** is set, the server exposes **`notify`**: Slack **`chat.postMessage`** — **not** vault storage; use for completion signals alongside **`memory_ingest`** when you also want a durable note. Repo reference: **[`docs/mcp/notify-tool.md`](../../../docs/mcp/notify-tool.md)** ([#77](https://github.com/danielsmithdevelopment/ClawQL/issues/77)).
 
 ---
 
@@ -84,6 +92,7 @@ One paragraph: what this note captures and why it matters.
 ## Commands / env
 
 - `VAR=value` …
+- `CLAWQL_MEMORY_INGEST_FILE_ROOTS=/abs/path/to/ClawQL` — optional comma-separated allowlist for **`toolOutputsFile`** (default: process **`cwd`** only). `CLAWQL_MEMORY_INGEST_FILE_MAX_BYTES` (default 10M). `CLAWQL_MEMORY_INGEST_FILE=0` disables path-based reads.
 
 ## APIs & references
 
@@ -98,7 +107,7 @@ One paragraph: what this note captures and why it matters.
 - [ ] Next steps
 ```
 
-Put **raw** command output, stack traces, or large JSON in **`toolOutputs`**, not inside **`insights`**, unless tiny.
+Put **raw** command output, stack traces, or large JSON in **`toolOutputs`** (or, when the text is too large to pass in MCP tool JSON, **`toolOutputsFile`** on the server), not inside **`insights`**, unless tiny.
 
 ### Wikilinking strategy
 
@@ -138,8 +147,10 @@ Put **raw** command output, stack traces, or large JSON in **`toolOutputs`**, no
 ## Minimal API reminder
 
 ```text
-memory_ingest: title (required), insights?, conversation?, toolOutputs? (string | string[]), wikilinks? (string[]), sessionId?, append? (boolean)
+memory_ingest: title (required), insights?, conversation?, toolOutputs? (string | string[]), toolOutputsFile? (path on server), wikilinks? (string[]), sessionId?, append? (boolean)
 memory_recall: query (required), limit?, maxDepth?, minScore?
 ```
 
-For implementation details (SQLite/pgvector, index), see `docs/memory-db-hybrid-implementation.md` in the repo when relevant.
+Repo details: **[`docs/mcp/mcp-tools.md`](../../../docs/mcp/mcp-tools.md)** (section **memory_ingest**).
+
+For implementation details (SQLite/pgvector, index), see `docs/memory/memory-db-hybrid-implementation.md` in the repo when relevant.
