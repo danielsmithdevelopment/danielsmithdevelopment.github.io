@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "generate:agentic-security-pillars": "node scripts/generate-agentic-security-pillars.mjs",
     "start": "next start",
     "lint": "tsc --noEmit",
     "test": "vitest run",

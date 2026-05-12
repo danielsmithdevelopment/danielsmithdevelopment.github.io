@@ -1,3 +1,4 @@
+import { agenticSecurityCurriculumPillarBodies } from '@/lib/agenticSecurityCurriculumPillarBodies.generated'
 import { featuredLinkedInPostBodies } from '@/lib/featuredLinkedInPostBodies'
 
 /** Site-wide copy and links — update here to refresh resume CTAs and featured work. */
@@ -122,14 +123,20 @@ export type FeaturedLinkedInPost = {
   title: string
   /** Short excerpt for cards and meta (full narrative is in `body`) */
   description: string
-  /** Full post text mirrored from LinkedIn for reading on this site (see `featuredLinkedInPostBodies.ts`) */
+  /** Full markdown body (LinkedIn mirror or long-form; see `featuredLinkedInPostBodies.ts` / generated curriculum) */
   body: string
-  linkedInUrl: string
+  /** When set, article and home cards link to the original LinkedIn thread */
+  linkedInUrl?: string
+  /**
+   * When there is no `linkedInUrl`, optional primary outbound link for cards and article footer
+   * (e.g. canonical curriculum hub on ClawQL Docs).
+   */
+  syndicationSource?: { label: string; href: string }
   /** Optional secondary links (docs, npm, repo) */
   extraLinks?: { label: string; href: string }[]
 }
 
-/** Home page cards + /articles — metadata here; full post copy in `featuredLinkedInPostBodies.ts`. */
+/** Home page cards + /articles — metadata here; bodies in `featuredLinkedInPostBodies.ts` or generated curriculum pillars. */
 export const featuredLinkedInPosts: FeaturedLinkedInPost[] = [
   {
     slug: 'truenas-scale-homelab-recovery',
@@ -174,6 +181,120 @@ export const featuredLinkedInPosts: FeaturedLinkedInPost[] = [
       {
         label: 'ClawQL repo',
         href: 'https://github.com/danielsmithdevelopment/ClawQL',
+      },
+    ],
+  },
+  {
+    slug: 'agentic-ai-security-supply-chain-and-admission',
+    date: '2026-05-11',
+    title:
+      'Agentic AI Security, Part 1: Supply Chain, Golden Images, and Admission Control',
+    description:
+      'Long-form consolidation of curriculum modules 1–3: digest pinning and private mirrors, golden images and signing in CI, and cluster admission policy for agent and MCP runtimes—with links to each module on ClawQL Docs.',
+    body: agenticSecurityCurriculumPillarBodies['agentic-ai-security-supply-chain-and-admission'],
+    syndicationSource: {
+      label: 'Agentic AI Security Curriculum (ClawQL Docs)',
+      href: 'https://docs.clawql.com/security/best-practices',
+    },
+    extraLinks: [
+      {
+        label: 'Series source (GitHub)',
+        href: 'https://github.com/danielsmithdevelopment/ClawQL/tree/main/docs/security/security-best-practices-series',
+      },
+    ],
+  },
+  {
+    slug: 'agentic-ai-security-identity-zero-trust',
+    date: '2026-05-10',
+    title:
+      'Agentic AI Security, Part 2: Identity, Least Privilege, and Zero Trust',
+    description:
+      'Modules 4–6 in one guide: scoped identities for agents and tools, zero-trust fundamentals, and advanced Vault, HSM, and provenance patterns—with canonical links per module.',
+    body: agenticSecurityCurriculumPillarBodies['agentic-ai-security-identity-zero-trust'],
+    syndicationSource: {
+      label: 'Agentic AI Security Curriculum (ClawQL Docs)',
+      href: 'https://docs.clawql.com/security/best-practices',
+    },
+    extraLinks: [
+      {
+        label: 'Series source (GitHub)',
+        href: 'https://github.com/danielsmithdevelopment/ClawQL/tree/main/docs/security/security-best-practices-series',
+      },
+    ],
+  },
+  {
+    slug: 'agentic-ai-security-mesh-sandbox-mcp',
+    date: '2026-05-09',
+    title:
+      'Agentic AI Security, Part 3: Service Mesh, Sandboxing, and MCP Runtime Protection',
+    description:
+      'Modules 7–9 combined: RBAC and mTLS with Istio, Kata vs gVisor sandbox tradeoffs, and MCP runtime protection—plus links to the full modules on docs.clawql.com.',
+    body: agenticSecurityCurriculumPillarBodies['agentic-ai-security-mesh-sandbox-mcp'],
+    syndicationSource: {
+      label: 'Agentic AI Security Curriculum (ClawQL Docs)',
+      href: 'https://docs.clawql.com/security/best-practices',
+    },
+    extraLinks: [
+      {
+        label: 'Series source (GitHub)',
+        href: 'https://github.com/danielsmithdevelopment/ClawQL/tree/main/docs/security/security-best-practices-series',
+      },
+    ],
+  },
+  {
+    slug: 'agentic-ai-security-data-models-observability',
+    date: '2026-05-08',
+    title:
+      'Agentic AI Security, Part 4: Data Classification, Model Integrity, and Runtime Monitoring',
+    description:
+      'Modules 10–12: data classification and PII in logs, verifying model weights, and observability for agentic workloads—consolidated with outbound links to each original module.',
+    body: agenticSecurityCurriculumPillarBodies['agentic-ai-security-data-models-observability'],
+    syndicationSource: {
+      label: 'Agentic AI Security Curriculum (ClawQL Docs)',
+      href: 'https://docs.clawql.com/security/best-practices',
+    },
+    extraLinks: [
+      {
+        label: 'Series source (GitHub)',
+        href: 'https://github.com/danielsmithdevelopment/ClawQL/tree/main/docs/security/security-best-practices-series',
+      },
+    ],
+  },
+  {
+    slug: 'agentic-ai-security-operations-and-production',
+    date: '2026-05-07',
+    title:
+      'Agentic AI Security, Part 5: Incident Response, Automation, GPU, Workstations, and Production',
+    description:
+      'Modules 13–17 in depth: automated containment, IR and PICERL, GPU abuse controls, secure local development, and production hardening for agent stacks—with links to every module.',
+    body: agenticSecurityCurriculumPillarBodies['agentic-ai-security-operations-and-production'],
+    syndicationSource: {
+      label: 'Agentic AI Security Curriculum (ClawQL Docs)',
+      href: 'https://docs.clawql.com/security/best-practices',
+    },
+    extraLinks: [
+      {
+        label: 'Series source (GitHub)',
+        href: 'https://github.com/danielsmithdevelopment/ClawQL/tree/main/docs/security/security-best-practices-series',
+      },
+    ],
+  },
+  {
+    slug: 'agentic-ai-security-governance-and-owasp-agentic',
+    date: '2026-05-06',
+    title:
+      'Agentic AI Security, Part 6: Threat Modeling, OWASP Agentic Top 10, and Quarterly Review',
+    description:
+      'Modules 18–20: STRIDE for agentic AI, OWASP Agentic Top 10 mitigations, and a quarterly security review checklist—merged here with links to the canonical curriculum.',
+    body: agenticSecurityCurriculumPillarBodies['agentic-ai-security-governance-and-owasp-agentic'],
+    syndicationSource: {
+      label: 'Agentic AI Security Curriculum (ClawQL Docs)',
+      href: 'https://docs.clawql.com/security/best-practices',
+    },
+    extraLinks: [
+      {
+        label: 'Series source (GitHub)',
+        href: 'https://github.com/danielsmithdevelopment/ClawQL/tree/main/docs/security/security-best-practices-series',
       },
     ],
   },

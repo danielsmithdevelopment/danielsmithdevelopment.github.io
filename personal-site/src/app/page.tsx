@@ -85,14 +85,25 @@ function Article({ article }: { article: ArticleWithSlug }) {
       <Card.Description>{article.description}</Card.Description>
       {linkedInPost ? (
         <div className="relative z-10 mt-4 flex flex-col gap-2 text-sm">
-          <Link
-            href={linkedInPost.linkedInUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex w-fit font-medium text-teal-600 underline decoration-teal-500/30 underline-offset-2 hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300"
-          >
-            View post on LinkedIn
-          </Link>
+          {linkedInPost.linkedInUrl ? (
+            <Link
+              href={linkedInPost.linkedInUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex w-fit font-medium text-teal-600 underline decoration-teal-500/30 underline-offset-2 hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300"
+            >
+              View post on LinkedIn
+            </Link>
+          ) : linkedInPost.syndicationSource ? (
+            <Link
+              href={linkedInPost.syndicationSource.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex w-fit font-medium text-teal-600 underline decoration-teal-500/30 underline-offset-2 hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300"
+            >
+              {linkedInPost.syndicationSource.label}
+            </Link>
+          ) : null}
           {linkedInPost.extraLinks?.length ? (
             <p className="text-zinc-500 dark:text-zinc-400">
               {linkedInPost.extraLinks.map((link, i) => (

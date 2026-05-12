@@ -40,17 +40,31 @@ export default async function LinkedInArticlePage({ params }: Props) {
   return (
     <ArticleLayout article={article}>
       <ArticleMarkdown source={post.body} />
-      <p className="mt-12 border-t border-zinc-100 pt-8 text-sm text-zinc-600 dark:border-zinc-700/40 dark:text-zinc-400">
-        Original thread (comments, reactions, and any media):{' '}
-        <Link
-          href={post.linkedInUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="font-medium text-teal-600 underline decoration-teal-500/30 underline-offset-2 hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300"
-        >
-          View on LinkedIn
-        </Link>
-      </p>
+      {post.linkedInUrl ? (
+        <p className="mt-12 border-t border-zinc-100 pt-8 text-sm text-zinc-600 dark:border-zinc-700/40 dark:text-zinc-400">
+          Original thread (comments, reactions, and any media):{' '}
+          <Link
+            href={post.linkedInUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-teal-600 underline decoration-teal-500/30 underline-offset-2 hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300"
+          >
+            View on LinkedIn
+          </Link>
+        </p>
+      ) : post.syndicationSource ? (
+        <p className="mt-12 border-t border-zinc-100 pt-8 text-sm text-zinc-600 dark:border-zinc-700/40 dark:text-zinc-400">
+          Canonical curriculum and module-by-module versions:{' '}
+          <Link
+            href={post.syndicationSource.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-teal-600 underline decoration-teal-500/30 underline-offset-2 hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300"
+          >
+            {post.syndicationSource.label}
+          </Link>
+        </p>
+      ) : null}
       {post.extraLinks?.length ? (
         <div className="mt-8">
           <p className="text-sm font-medium text-zinc-800 dark:text-zinc-200">
