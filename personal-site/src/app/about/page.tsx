@@ -93,9 +93,19 @@ export default function About() {
               >
                 ClawQL
               </Link>
-              , an MCP server that slashes AI token usage by 99% on remote APIs,
-              and contributed agentic web-search + MCP skills to Google&apos;s AI Edge
-              Gallery. I also experiment with on-device ML and GenAI UX via my
+              , an MCP server for multi-protocol API access (OpenAPI, Swagger,
+              Google Discovery, optional GraphQL/gRPC) with lean token use on remote
+              calls, Obsidian vault memory, audit and session cache, and optional
+              tools for sandbox runs, persisted schedules, Slack notifications, and
+              more — see{' '}
+              <Link
+                href="https://docs.clawql.com"
+                className="font-medium text-teal-600 underline decoration-teal-500/40 underline-offset-2 hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300"
+              >
+                docs.clawql.com
+              </Link>
+              . I also contributed agentic web-search + MCP skills to Google&apos;s
+              AI Edge Gallery and experiment with on-device ML and GenAI UX via my
               fork of the gallery sample.
             </p>
             <p className="font-medium text-zinc-700 dark:text-zinc-300">

@@ -44,6 +44,6 @@ docker run --rm -p 8080:80 personal-site:local
 
 ## Structure
 
-- `src/lib/site.ts` — name, links, résumé roles, featured repos
-- `public/` — static assets including résumé PDF and `CNAME`
+- `src/lib/site.ts` — name, links, resume roles, featured repos
+- `public/` — static assets including resume PDF and `CNAME`
 - `vitest.config.ts` — unit tests (`src/**/*.test.ts`)

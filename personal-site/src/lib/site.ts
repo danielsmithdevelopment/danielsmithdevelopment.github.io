@@ -4,7 +4,7 @@ import { featuredLinkedInPostBodies } from '@/lib/featuredLinkedInPostBodies'
 export const site = {
   name: 'Daniel Smith',
   tagline:
-    'Senior Backend Platform Engineer | Kubernetes • AI Agents • MCP • LLM Integrations',
+    'Senior Backend Platform Engineer | AI Agents & MCP | Kubernetes & Cloud Infrastructure',
   /** OpenGraph / meta default description */
   description:
     'Senior Backend Platform Engineer with 7+ years architecting resilient Kubernetes platforms, AI-powered tools, and multi-cloud DevOps solutions. Actively seeking new opportunities.',
@@ -37,7 +37,7 @@ export const aiHighlights = [
   {
     title: 'Agents & APIs',
     body:
-      'Shipped ClawQL, an open-source MCP server so LLM agents can search OpenAPI/Swagger/Discovery specs and run operations with lean responses — bundled graphs for GCP, Cloudflare, GitHub, Slack, and more.',
+      'Shipped ClawQL, an open-source MCP server: agents search and execute over OpenAPI/Swagger/Google Discovery (optional GraphQL/gRPC upstreams) with lean responses; bundled multi-provider graphs; vault memory (memory_ingest / memory_recall), audit, and cache; plus optional sandbox, schedules, Slack notify, Label Studio HITL, Onyx search, and more — stdio, HTTP, and gRPC. See https://docs.clawql.com.',
   },
   {
     title: 'On-device ML & GenAI',
@@ -180,9 +180,10 @@ export const featuredProjects: FeaturedProject[] = [
   {
     name: 'ClawQL',
     description:
-      'Open-source MCP server for searching OpenAPI/Swagger/Discovery specs and executing operations with lean, token-aware responses.',
+      'Open-source MCP server: multi-protocol API supergraph (OpenAPI/Swagger/Discovery, optional GraphQL/gRPC), vault memory and bulk ingest, audit/cache, and optional sandbox, scheduling, Slack, HITL, and enterprise search — https://docs.clawql.com.',
     href: 'https://github.com/danielsmithdevelopment/ClawQL',
     label: 'GitHub',
+    extraLink: { label: 'Docs', href: 'https://docs.clawql.com' },
   },
   {
     name: 'CoachellaPlus',
@@ -209,7 +210,7 @@ export const featuredRepos: FeaturedRepo[] = [
   {
     name: 'ClawQL',
     description:
-      'MCP server: search and execute over OpenAPI 3, Swagger 2, or Google Discovery, with optional GraphQL for lean API responses. Bundled specs (GCP, Cloudflare, Jira, GitHub, Slack, Sentry, n8n) so agents discover operations without loading full API definitions into context.',
+      'MCP server: search/execute across OpenAPI 3, Swagger 2, and Google Discovery, with optional GraphQL/gRPC upstreams and bundled multi-provider merges (GCP, Cloudflare, GitHub, Slack, document APIs, Onyx, and more). Core tools include vault memory_ingest / memory_recall, audit, cache, and bulk markdown ingest; optional sandbox_exec, schedule, notify (Slack), HITL (Label Studio), Onyx knowledge search, and Ouroboros lineage. stdio, Streamable HTTP, and MCP over gRPC.',
     href: 'https://github.com/danielsmithdevelopment/ClawQL',
     label: 'github.com · TypeScript',
     highlight: true,
