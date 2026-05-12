@@ -11,7 +11,7 @@ export interface ArticleWithSlug extends Article {
   slug: string
 }
 
-/** Articles list and /articles/<slug> pages — sourced only from `featuredLinkedInPosts` in site.ts */
+/** Articles list and /articles/<slug> pages — sourced from `featuredLinkedInPosts` in site.ts (LinkedIn mirrors and syndicated long-form). */
 export async function getAllArticles(): Promise<ArticleWithSlug[]> {
   return featuredLinkedInPosts
     .map((post) => ({
