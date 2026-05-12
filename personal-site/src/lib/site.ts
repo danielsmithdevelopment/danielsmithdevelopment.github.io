@@ -95,18 +95,22 @@ export const workRoles: WorkRole[] = [
 export type FeaturedRepo = {
   name: string
   description: string
-  href: string
-  label: string
   /** Highlight for recruiters (AI / agents / platform) */
   highlight: boolean
+  /** Repository or path on GitHub — omit if none */
+  github: string | null
+  /** npm package page — omit if not published */
+  npm: string | null
+  /** Production app, marketing site, or public docs — omit if none */
+  live: string | null
 }
 
 export type FeaturedProject = {
   name: string
   description: string
-  href: string
-  label: string
-  extraLink?: { label: string; href: string }
+  github: string | null
+  npm: string | null
+  live: string | null
 }
 
 export type FeaturedLinkedInPost = {
@@ -175,68 +179,122 @@ export const featuredLinkedInPosts: FeaturedLinkedInPost[] = [
   },
 ]
 
-/** Home page spotlight projects */
+/** Home page spotlight projects (aligned with resume “Open Source and Projects”) */
 export const featuredProjects: FeaturedProject[] = [
   {
     name: 'ClawQL',
     description:
       'Open-source MCP server: multi-protocol API supergraph (OpenAPI/Swagger/Discovery, optional GraphQL/gRPC), vault memory and bulk ingest, audit/cache, and optional sandbox, scheduling, Slack, HITL, and enterprise search — https://docs.clawql.com.',
-    href: 'https://github.com/danielsmithdevelopment/ClawQL',
-    label: 'GitHub',
-    extraLink: { label: 'Docs', href: 'https://docs.clawql.com' },
+    github: 'https://github.com/danielsmithdevelopment/ClawQL',
+    npm: 'https://www.npmjs.com/package/clawql-mcp',
+    live: 'https://docs.clawql.com',
   },
   {
     name: 'CoachellaPlus',
     description:
-      'Full-stack TypeScript product work focused on shipping end-to-end web experiences.',
-    href: 'https://github.com/danielsmithdevelopment/CoachellaPlus',
-    label: 'GitHub',
+      'Full-stack festival-planning PWA with hybrid retrieval (SQLite + embeddings + reranking), OpenRouter LLM integration, Tavily fallback, and group coordination — Lighthouse 90+ and deployed via ClawQL to Cloudflare and GitHub APIs.',
+    github: 'https://github.com/danielsmithdevelopment/CoachellaPlus',
+    npm: null,
+    live: 'https://coachellaplus.com',
   },
   {
-    name: 'gRPC MCP Transport',
+    name: 'mcp-grpc-transport',
     description:
-      'Production-ready gRPC transport for MCP with streaming, health checks, and enterprise-friendly deployment support.',
-    href: 'https://www.npmjs.com/package/mcp-grpc-transport',
-    label: 'npm',
-    extraLink: {
-      label: 'GitHub repo',
-      href: 'https://github.com/danielsmithdevelopment/ClawQL',
-    },
+      'TypeScript gRPC transport for MCP: protobuf payloads, unary and bidirectional streaming, grpc.health.v1 probes, mTLS, and Kubernetes-friendly deployment — extends the official MCP SDK beyond stdio and Streamable HTTP.',
+    github:
+      'https://github.com/danielsmithdevelopment/ClawQL/tree/main/packages/mcp-grpc-transport',
+    npm: 'https://www.npmjs.com/package/mcp-grpc-transport',
+    live: null,
+  },
+  {
+    name: 'clawql-ouroboros',
+    description:
+      'Pluggable evolutionary-loop library: typed Executor / Evaluator / Wonder / Reflect phases, ontology convergence gates, Postgres-backed lineage, MCP-shaped hooks, and an optional background seed poller.',
+    github:
+      'https://github.com/danielsmithdevelopment/ClawQL/tree/main/packages/clawql-ouroboros',
+    npm: 'https://www.npmjs.com/package/clawql-ouroboros',
+    live: null,
+  },
+  {
+    name: 'panguard-mcp-bridge',
+    description:
+      'Streamable HTTP MCP gateway (optional gRPC) for /mcp at the edge: Panguard on stdio, upstream clawql-mcp-http, optional JWT (JWKS / Bearer on HTTP and gRPC), Helm mcpProxy integration.',
+    github:
+      'https://github.com/danielsmithdevelopment/ClawQL/tree/main/packages/panguard-mcp-bridge',
+    npm: null,
+    live: null,
   },
 ]
 
-/** Curated from github.com/danielsmithdevelopment — edit to reorder or swap */
+/**
+ * /projects — resume “Open Source and Projects” plus other public repos you still want featured.
+ * Reorder here; `highlight` drives the “AI / agents” eyebrow on the projects page.
+ */
 export const featuredRepos: FeaturedRepo[] = [
   {
     name: 'ClawQL',
     description:
       'MCP server: search/execute across OpenAPI 3, Swagger 2, and Google Discovery, with optional GraphQL/gRPC upstreams and bundled multi-provider merges (GCP, Cloudflare, GitHub, Slack, document APIs, Onyx, and more). Core tools include vault memory_ingest / memory_recall, audit, cache, and bulk markdown ingest; optional sandbox_exec, schedule, notify (Slack), HITL (Label Studio), Onyx knowledge search, and Ouroboros lineage. stdio, Streamable HTTP, and MCP over gRPC.',
-    href: 'https://github.com/danielsmithdevelopment/ClawQL',
-    label: 'github.com · TypeScript',
     highlight: true,
+    github: 'https://github.com/danielsmithdevelopment/ClawQL',
+    npm: 'https://www.npmjs.com/package/clawql-mcp',
+    live: 'https://docs.clawql.com',
+  },
+  {
+    name: 'CoachellaPlus',
+    description:
+      'Full-stack festival-planning PWA: hybrid retrieval (structured JSON + SQLite embeddings + reranking), OpenRouter LLM, Tavily agentic search with a quality-gated self-improving knowledge base, group chat and live location, set builder with conflict detection, PWA with Lighthouse 90+ including WCAG — deployed via ClawQL to Cloudflare and GitHub APIs.',
+    highlight: true,
+    github: 'https://github.com/danielsmithdevelopment/CoachellaPlus',
+    npm: null,
+    live: 'https://coachellaplus.com',
+  },
+  {
+    name: 'mcp-grpc-transport',
+    description:
+      'First TypeScript/Node.js gRPC transport for the Model Context Protocol: protobuf payloads, unary and bidirectional streaming, grpc.health.v1 probes, mTLS, and enterprise Kubernetes deployment patterns — alongside the official SDK’s stdio and Streamable HTTP.',
+    highlight: true,
+    github:
+      'https://github.com/danielsmithdevelopment/ClawQL/tree/main/packages/mcp-grpc-transport',
+    npm: 'https://www.npmjs.com/package/mcp-grpc-transport',
+    live: null,
+  },
+  {
+    name: 'clawql-ouroboros',
+    description:
+      'Evolutionary loop library: typed Executor, Evaluator, Wonder, and Reflect phases; ontology convergence with stagnation, oscillation, and regression gates; Postgres-backed append-only lineage; InMemoryEventStore for tests; MCP-shaped hooks (createSeedFromDocument, runEvolutionaryLoop, getLineageStatus); optional background seed poller.',
+    highlight: true,
+    github:
+      'https://github.com/danielsmithdevelopment/ClawQL/tree/main/packages/clawql-ouroboros',
+    npm: 'https://www.npmjs.com/package/clawql-ouroboros',
+    live: null,
+  },
+  {
+    name: 'panguard-mcp-bridge',
+    description:
+      'Streamable HTTP MCP gateway (optional gRPC via mcp-grpc-transport): /mcp for clients or a service mesh while Panguard stays on stdio and terminates on remote clawql-mcp-http. Optional JWT (JWKS RS256, Bearer on HTTP and gRPC) and Helm mcpProxy.mode: custom on the clawql-mcp chart.',
+    highlight: true,
+    github:
+      'https://github.com/danielsmithdevelopment/ClawQL/tree/main/packages/panguard-mcp-bridge',
+    npm: null,
+    live: null,
   },
   {
     name: 'gallery (fork)',
     description:
       'Exploring on-device ML and GenAI use cases — a gallery to try models locally. Forked to experiment with device-side inference and UX.',
-    href: 'https://github.com/danielsmithdevelopment/gallery',
-    label: 'github.com · Kotlin',
     highlight: true,
-  },
-  {
-    name: 'CoachellaPlus',
-    description:
-      'Full-stack TypeScript site and product work — example of shipping end-to-end web experiences alongside infrastructure work.',
-    href: 'https://github.com/danielsmithdevelopment/CoachellaPlus',
-    label: 'github.com',
-    highlight: false,
+    github: 'https://github.com/danielsmithdevelopment/gallery',
+    npm: null,
+    live: null,
   },
   {
     name: 'DevSecOps-boilerplate',
     description:
       'Golden images, Ansible, Terraform, and GitHub Actions patterns for secure, repeatable infrastructure automation.',
-    href: 'https://github.com/danielsmithdevelopment/DevSecOps-boilerplate',
-    label: 'github.com · Go',
     highlight: false,
+    github: 'https://github.com/danielsmithdevelopment/DevSecOps-boilerplate',
+    npm: null,
+    live: null,
   },
 ]
