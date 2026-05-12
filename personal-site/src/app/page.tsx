@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
+import { ProjectOutboundLinks } from '@/components/ProjectOutboundLinks'
 import {
   GitHubIcon,
   LinkedInIcon,
@@ -120,21 +121,14 @@ function FeaturedProjectCard({ project }: { project: FeaturedProject }) {
   return (
     <Card as="article">
       <Card.Eyebrow decorate>Project</Card.Eyebrow>
-      <Card.Title href={project.href}>{project.name}</Card.Title>
+      <Card.Title as="h3">{project.name}</Card.Title>
       <Card.Description>{project.description}</Card.Description>
-      <div className="relative z-10 mt-4 flex flex-col gap-2 text-sm">
-        <p className="text-zinc-500 dark:text-zinc-400">{project.label}</p>
-        {project.extraLink ? (
-          <Link
-            href={project.extraLink.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex w-fit font-medium text-teal-600 underline decoration-teal-500/30 underline-offset-2 hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300"
-          >
-            {project.extraLink.label}
-          </Link>
-        ) : null}
-      </div>
+      <ProjectOutboundLinks
+        github={project.github}
+        npm={project.npm}
+        live={project.live}
+        className="mt-4"
+      />
     </Card>
   )
 }
@@ -330,10 +324,11 @@ export default async function Home() {
             Featured projects
           </h2>
           <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-            ClawQL, CoachellaPlus, and gRPC MCP Transport.
+            MCP stack, libraries, gateways, and product PWAs — use the icons for
+            GitHub, npm, or the live site when each exists.
           </p>
         </div>
-        <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+        <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-8 sm:grid-cols-2 lg:mx-0 lg:max-w-none xl:grid-cols-3">
           {featuredProjects.map((project) => (
             <FeaturedProjectCard key={project.name} project={project} />
           ))}
