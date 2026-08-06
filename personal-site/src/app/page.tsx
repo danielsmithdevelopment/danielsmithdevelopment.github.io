@@ -3,6 +3,7 @@ import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
 import { ProjectOutboundLinks } from '@/components/ProjectOutboundLinks'
+import { ArticleMarkdown } from '@/components/ArticleMarkdown'
 import {
   GitHubIcon,
   LinkedInIcon,
@@ -14,6 +15,7 @@ import {
   featuredProjects,
   featuredLinkedInPosts,
   linkedinProfile,
+  openToOpportunities,
   site,
   type FeaturedProject,
   type WorkRole,
@@ -165,28 +167,53 @@ function HiringCta() {
         <span className="ml-3">Open to opportunities</span>
       </h2>
       <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-        I’m particularly interested in roles blending{' '}
-        <strong className="font-medium text-zinc-800 dark:text-zinc-200">
-          AI agents, LLM tooling, or MCP
-        </strong>{' '}
-        with{' '}
-        <strong className="font-medium text-zinc-800 dark:text-zinc-200">
-          production platform engineering
-        </strong>{' '}
-        (Kubernetes, observability, reliability). Reach out if that sounds like
-        your team.
+        {openToOpportunities.intro}
       </p>
-      <div className="mt-4 flex flex-wrap gap-3">
+      <p className="mt-4 text-sm font-medium text-zinc-800 dark:text-zinc-200">
+        I&apos;m open to:
+      </p>
+      <ul className="mt-3 space-y-4">
+        {openToOpportunities.items.map((item) => (
+          <li key={item.title}>
+            <p className="text-sm font-medium text-zinc-800 dark:text-zinc-200">
+              {item.title}
+            </p>
+            <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+              {item.body}
+              {'href' in item && item.href ? (
+                <>
+                  {' '}
+                  <Link
+                    href={item.href}
+                    className="font-medium text-teal-600 underline decoration-teal-500/30 underline-offset-2 hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300"
+                  >
+                    {item.hrefLabel}
+                  </Link>
+                </>
+              ) : null}
+            </p>
+          </li>
+        ))}
+      </ul>
+      <div className="mt-5 flex flex-wrap gap-3">
         <Button
           href={`mailto:${site.email}?subject=Hello%20Daniel`}
           variant="primary"
           className="flex-none"
         >
-          Email me
+          Email
         </Button>
         <Button href={site.github.url} variant="secondary" className="flex-none">
-          GitHub profile
+          GitHub
         </Button>
+        <Button href={site.social.x} variant="secondary" className="flex-none">
+          X
+        </Button>
+        {linkedinProfile ? (
+          <Button href={linkedinProfile} variant="secondary" className="flex-none">
+            LinkedIn
+          </Button>
+        ) : null}
       </div>
     </div>
   )
@@ -234,7 +261,7 @@ function AiAgentsSection() {
     <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
       <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
         <SparklesIcon className="h-6 w-6 flex-none" />
-        <span className="ml-3">AI &amp; agents</span>
+        <span className="ml-3">Focus areas</span>
       </h2>
       <ul className="mt-6 space-y-5">
         {aiHighlights.map((item) => (
@@ -297,10 +324,12 @@ export default async function Home() {
             {site.location}
           </p>
           <h1 className="mt-3 text-2xl font-bold tracking-tight text-zinc-800 sm:text-3xl lg:text-4xl dark:text-zinc-100 leading-snug">
-            {site.tagline}
+            {site.headline}
           </h1>
-          <p className="mt-6 text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
-            {site.bioShort}{' '}
+          <div className="mt-6 space-y-4 text-base leading-relaxed text-zinc-600 dark:text-zinc-400 [&_p]:my-0">
+            <ArticleMarkdown source={site.homeSummaryMarkdown} />
+          </div>
+          <p className="mt-4 text-base text-zinc-600 dark:text-zinc-400">
             <Link
               href="/about"
               className="font-medium text-teal-600 underline decoration-teal-500/30 underline-offset-2 hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300"
@@ -335,8 +364,9 @@ export default async function Home() {
             Featured projects
           </h2>
           <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-            MCP stack, libraries, gateways, and product PWAs — use the icons for
-            GitHub, npm, or the live site when each exists.
+            CBDC infrastructure, public interest tools, and the ClawQL agentic
+            stack — use the icons for GitHub, npm, or the live site when each
+            exists.
           </p>
         </div>
         <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-8 sm:grid-cols-2 lg:mx-0 lg:max-w-none xl:grid-cols-3">

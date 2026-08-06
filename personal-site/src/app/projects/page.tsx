@@ -8,14 +8,14 @@ import { featuredRepos } from '@/lib/site'
 export const metadata: Metadata = {
   title: 'Projects',
   description:
-    'Open-source and product work — AI agents, DevSecOps automation, and full-stack apps.',
+    'Sand Dollar CBDC infrastructure, Challenge the Footage, Witness, ClawQL, and related open-source work.',
 }
 
 export default function Projects() {
   return (
     <SimpleLayout
       title="Projects"
-      intro="Curated to match my resume’s open-source section: MCP servers and transports, evolutionary-loop tooling, edge gateways, and product PWAs — plus a few extra public repos. Each card links to GitHub, npm, and/or a live site when available (icons below the title)."
+      intro="Featured work across institutional blockchain infrastructure, public interest technology, and the ClawQL agentic stack — plus related open-source libraries and product PWAs. Each card links to GitHub, npm, and/or a live site when available."
     >
       <ul
         role="list"

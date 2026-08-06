@@ -9,7 +9,7 @@ import '@/styles/tailwind.css'
 export const metadata: Metadata = {
   title: {
     template: `%s - ${site.name}`,
-    default: `${site.name} - ${site.tagline}`,
+    default: `${site.name} — ${site.tagline}`,
   },
   description: site.description,
   alternates: {
