@@ -101,7 +101,7 @@ export const workRoles: WorkRole[] = [
     company: 'Validation Cloud',
     title: 'Senior DevOps Engineer',
     initial: 'V',
-    start: { label: 'Sep 2025', dateTime: '2025-09-01' },
+    start: { label: 'Jun 2026', dateTime: '2026-06-01' },
     end: { label: 'Present', dateTime: '2026-08-06' },
   },
 
