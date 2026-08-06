@@ -77,11 +77,8 @@ export default function About() {
             <p>
               Daniel Smith is a Senior DevOps Engineer at Validation Cloud, where
               he builds and secures institutional blockchain infrastructure —
-              Node API, enterprise staking, and AI-powered blockchain
-              intelligence — for enterprises managing billions in digital assets.
-              He also built the team&apos;s AI knowledge vault, a shared
-              cross-machine synchronized knowledge base that keeps engineering
-              context current across the team. Based in {site.location}.
+              Node API, staking, and AI tooling — for enterprises managing
+              billions in digital assets. Based in {site.location}.
             </p>
             <p>
               His blockchain work began at IBM, where he developed the transaction
@@ -89,7 +86,9 @@ export default function About() {
               deployed retail central bank digital currency. Issued by the
               Central Bank of The Bahamas and live since October 2020, Sand Dollar
               is the reference case every central bank in the world now studies
-              when designing retail CBDC programs.
+              when designing retail CBDC programs. Before IBM, he built blockchain
+              onboarding infrastructure at Granite Solutions Group and full-stack
+              web tooling at USC&apos;s Laboratory of Neuroimaging.
             </p>
             <p>
               Outside his role at Validation Cloud, Daniel builds open-source
@@ -111,8 +110,8 @@ export default function About() {
                 className={linkClassName}
               >
                 docs.clawql.com/security/best-practices
-              </Link>{' '}
-              and cited by engineers building production agentic systems.
+              </Link>
+              .
             </p>
             <p>
               <Link
@@ -165,10 +164,9 @@ export default function About() {
               makes financial systems trustworthy — immutable audit trails,
               cryptographic chain of custody, independent verification — should
               be applied to government programs, law enforcement evidence, and
-              public records.
+              public records. He is based in San Gabriel, California.
             </p>
-          </div>
-        </div>
+          </div>        </div>
         <div className="lg:pl-20">
           <ul role="list">
             <SocialLink href={site.social.x} icon={XIcon}>

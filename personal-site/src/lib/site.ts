@@ -9,10 +9,10 @@ export const site = {
     'Blockchain Infrastructure · AI Agents · Public Interest Technology',
   /** Home hero H1 */
   headline:
-    'Senior DevOps Engineer · Blockchain Infrastructure · AI Agents · Public Interest Technology',
+    'Platform Engineer · Blockchain Infrastructure · AI Agents · Public Interest Technology',
   /** OpenGraph / meta default description */
   description:
-    "Senior DevOps Engineer at Validation Cloud building and securing institutional blockchain infrastructure. Creator of the world's first CBDC transaction engine (Sand Dollar), ClawQL agentic AI platform, and challengethefootage.com — open-source tools for government accountability and civil rights.",
+    "Platform engineer at Validation Cloud building institutional blockchain infrastructure. Creator of the world's first CBDC transaction engine (Sand Dollar), ClawQL agentic AI platform, and challengethefootage.com — open-source tools for government accountability and civil rights.",
   /** Public site URL (set NEXT_PUBLIC_SITE_URL in CI for canonical links and RSS) */
   url:
     (typeof process !== 'undefined' && process.env.NEXT_PUBLIC_SITE_URL) ||
@@ -26,11 +26,11 @@ export const site = {
    * Prefer `homeSummaryMarkdown` for the home hero (links + paragraphs).
    */
   bioShort:
-    "Senior DevOps Engineer at Validation Cloud building and securing institutional blockchain infrastructure — Node API, staking, and AI tooling — for enterprises managing billions in digital assets. Previously at IBM Blockchain, developed the transaction state machine for Sand Dollar — the world's first nationally deployed retail CBDC, issued by the Central Bank of The Bahamas (sanddollar.bs, live since October 2020). Open-source work spans ClawQL (production agentic AI gateway), challengethefootage.com (surveillance evidence accountability tools used by public defenders), and the clawql-government specification for cryptographic government program outcome measurement. Background includes Phantom, DraftKings, and Upgrade spanning Kubernetes infrastructure, blockchain systems, and SRE.",
+    "Senior DevOps Engineer at Validation Cloud building and securing institutional blockchain infrastructure — Node API, staking, and AI tooling — for enterprises managing billions in digital assets. Previously at IBM Blockchain, developed the transaction state machine for Sand Dollar, the world's first nationally deployed retail CBDC issued by the Central Bank of The Bahamas (sanddollar.bs, live since October 2020). Open-source work spans ClawQL (production agentic AI gateway and MCP server), challengethefootage.com (surveillance evidence accountability tools used by public defenders), and the Witness civilian recording app. Prior experience at Phantom (65% infra cost reduction, multi-region K8s), DraftKings (blockchain systems), Upgrade (SRE/progressive deployment), Granite Solutions Group (blockchain consulting), and USC (Golang tooling, full-stack web).",
   /**
    * Home hero summary (markdown). Links render via ArticleMarkdown.
    */
-  homeSummaryMarkdown: `Senior DevOps Engineer at [Validation Cloud](https://validationcloud.io) building and securing institutional blockchain infrastructure — Node API, enterprise staking, and Mavrik AI-powered blockchain intelligence — for clients including Chainlink, Consensys, BitGo, Anchorage, and ether.fi. Built the team's AI knowledge vault, a shared cross-machine synchronized knowledge base that keeps engineering context current across the team; work also spans DevOps infrastructure and security across the blockchain node and staking stack.
+  homeSummaryMarkdown: `Platform engineer at [Validation Cloud](https://validationcloud.io) building institutional-grade blockchain node API, staking infrastructure, and AI-powered blockchain intelligence (Mavrik) for clients including Chainlink, Consensys, and BitGo.
 
 Previously at IBM Blockchain, I developed the transaction state machine for [Sand Dollar](https://sanddollar.bs) — the world's first nationally deployed retail central bank digital currency, issued by the Central Bank of The Bahamas and live since October 2020. Every CBDC research program currently studying retail digital currency deployment uses the Bahamas as the reference case.
 
@@ -71,7 +71,7 @@ export const aiHighlights = [
   {
     title: 'Institutional blockchain infrastructure',
     body:
-      'Senior DevOps Engineer at Validation Cloud: Node API (#1 globally by CompareNodes), SOC2 Type II enterprise staking, and Mavrik AI-powered blockchain intelligence for Chainlink, Consensys, BitGo, Anchorage, and ether.fi — plus the team AI knowledge vault and security work across the node and staking stack.',
+      'At Validation Cloud: Node API (#1 globally by CompareNodes), SOC2 Type II enterprise staking, and Mavrik AI-powered blockchain intelligence for Chainlink, Consensys, BitGo, Anchorage, and ether.fi — plus the team AI knowledge vault and security work across the node and staking stack.',
   },
   {
     title: 'Agents & MCP',
@@ -119,7 +119,7 @@ export const workRoles: WorkRole[] = [
     end: { label: 'Mar 2023', dateTime: '2023-03-31' },
   },
   {
-    company: 'Upgrade',
+    company: 'Upgrade Inc',
     title: 'DevOps Engineer (SRE)',
     initial: 'U',
     start: { label: 'Sep 2020', dateTime: '2020-09-01' },
@@ -162,27 +162,46 @@ export const workRoles: WorkRole[] = [
   },
 ]
 
-/** Optional longer blurbs for experience entries (resume / about). */
+/** Optional longer blurbs for experience entries (resume / about / home). */
 export const workRoleDetails: Record<
   string,
   { summary: string; stack: string }
 > = {
   'Validation Cloud': {
     summary:
-      "Institutional blockchain infrastructure platform — Node API (#1 globally by CompareNodes), enterprise staking (SOC2 Type II certified), and Mavrik AI-powered blockchain intelligence — serving Chainlink, Consensys, BitGo, Anchorage, and ether.fi. Built the team's AI knowledge vault — a shared, cross-machine synchronized knowledge base that keeps engineering context current across the entire team. Work also spans DevOps infrastructure and security across the blockchain node and staking stack.",
+      "Institutional blockchain infrastructure platform — Node API (#1 globally by CompareNodes), enterprise staking (SOC2 Type II certified), and Mavrik AI-powered blockchain intelligence — serving Chainlink, Consensys, BitGo, Anchorage, and ether.fi.\n\nBuilt the team's AI knowledge vault — a shared, cross-machine synchronized knowledge base that keeps engineering context current across the entire team. Work also spans DevOps infrastructure and security across the blockchain node and staking stack.",
     stack:
       'TypeScript · Kubernetes · Blockchain · AI tooling · DevOps · Security',
   },
+  Phantom: {
+    summary:
+      'Architected multi-region Kubernetes, Istio, and CockroachDB infrastructure with full failover and redundancy, enabling zero-downtime operation during extended cloud regional outages. Redesigned global service deployments to be team- and service-modular, giving teams full end-to-end ownership and isolated rollbacks with no cross-team blast radius.\n\nLed developer experience workshops; improved Ease of Deployment and Production Debugging scores by 125% and 133% respectively as measured by CoreDX. Conducted distributed load testing with K6 and chaos engineering with Chaos Mesh. Migrated Lambda architecture to Kubernetes and reduced infrastructure costs by 65% post-migration.',
+    stack:
+      'TypeScript · Rust · AWS · Cloudflare · Kubernetes · Istio · ArgoCD · Kafka · CockroachDB · DragonflyDB · Datadog · Karpenter · GitHub Actions · Pulumi · ChaosMesh · K6 · ClickHouse · Wiz · Okta',
+  },
+  DraftKings: {
+    summary:
+      'Indexed blockchain smart contract events and exposed them to internal services via GraphQL using The Graph Protocol, powering the consumer-facing NFT platform and wallet analytics. Architected large-scale multi-chain solutions using Graph Protocol indexing and Chainlink oracle guardians. Deployed and managed blockchain infrastructure supporting DraftKings Marketplace, including Ethereum and Polygon nodes.',
+    stack:
+      'Golang · Rust · Solidity · AWS · Kubernetes · Jenkins · Terraform · Ansible · Graph Protocol · Chainlink · Ethereum · Polygon · Slither · Manticore · Echidna',
+  },
+  'Upgrade Inc': {
+    summary:
+      'Architected and implemented a Progressive Deployment strategy with Argo on Kubernetes and Istio, enabling controlled rollout to user subsets. Built a Canary Testing strategy with Argo Analyses integrating Prometheus, CloudWatch, and custom job metrics with automated incremental traffic shifting through Istio on test pass.\n\nChampioned Zero Trust Security: short-lived Vault credentials, automated AMI and Docker image hardening with Ansible and Packer, runtime vulnerability detection with Twistlock, and enforced image signing via Kubernetes admission controller.',
+    stack:
+      'Golang · AWS · Kubernetes · Helm · Istio · ArgoCD · Jenkins · Terraform · Ansible · Packer · Prometheus · Grafana · Jaeger · Honeycomb · Vault',
+  },
   'IBM Blockchain': {
     summary:
-      "Developed the transaction state machine for Sand Dollar — the world's first nationally deployed retail central bank digital currency, issued by the Central Bank of The Bahamas and live since October 2020 at sanddollar.bs. Enabled asset bridging between domestic and international currency versions supporting financial inclusion across a 700-island nation. Designed high-availability, disaster recovery, and security compliance plans for payments and supply chain platforms across a multi-cloud Kubernetes setup with cloud, region, and AZ-level automatic failover. Configured observability for Stellar Lumens Validator Nodes.",
+      "Developed the transaction state machine for Sand Dollar — the world's first nationally deployed retail central bank digital currency, issued by the Central Bank of The Bahamas and live since October 2020 at sanddollar.bs. Enabled asset bridging between domestic and international currency versions supporting financial inclusion across a 700-island nation.\n\nDesigned high-availability, disaster recovery, and security compliance plans for payments and supply chain platforms across a multi-cloud Kubernetes setup with cloud, region, and AZ-level automatic failover and zero-downtime blue-green deployments. Led adoption of Immutable Infrastructure as Code using Terraform and Ansible. Configured observability for Stellar Lumens Validator Nodes.",
     stack:
-      'Golang · TypeScript · AWS · GCP · IBM Cloud · Kubernetes · Helm · Istio · Blockchain · CBDC',
+      'Golang · TypeScript · AWS · GCP · IBM Cloud · Kubernetes · Helm · Istio · Flux · Terraform · Ansible · Packer · Sysdig · Grafana · Prometheus · Vault',
   },
   'Granite Solutions Group': {
     summary:
       "Consulting engagement bridging clients onto IBM's blockchain platforms. Built client-facing onboarding portal in Angular and Firebase interfacing with a Golang microservices API. Enabled API sandboxing from Swagger specs. Traveled internationally to provide in-person solutions engineering and blockchain adoption education.",
-    stack: 'Golang · TypeScript · Angular · Firebase · AWS · GCP · IBM Cloud · Docker',
+    stack:
+      'Golang · TypeScript · Angular · Firebase · AWS · GCP · IBM Cloud · Docker',
   },
   'USC Laboratory of Neuroimaging': {
     summary:
@@ -542,7 +561,7 @@ export const featuredProjects: FeaturedProject[] = [
   {
     name: 'Witness — Civilian Encounter Recording App',
     description:
-      'React Native (iOS + Android) app that activates when you are pulled over or stopped by police, records video, audio, and real-time on-device transcript, and uploads all three artifacts in priority order — transcript first, audio second, video third — so evidence reaches safety even on a weak signal. Cryptographically signed and Arweave-anchored. React Native · Expo · Whisper · Cloudflare R2 · Arweave · TypeScript.',
+      'React Native (iOS + Android) app that activates when you are pulled over or stopped by police, records video, audio, and real-time on-device transcript, and uploads all three artifacts in priority order — transcript first, audio second, video third — so evidence reaches safety even on a weak signal. Each recording is cryptographically signed by the device and anchored to Arweave for permanent independent verification. After the encounter, recordings hand off to challengethefootage.com to generate legal documents pre-populated with the session\'s cryptographic proof. Free to use. React Native · Expo · Whisper (on-device STT) · Cloudflare R2 · Arweave · TypeScript.',
     github:
       'https://github.com/danielsmithdevelopment/surveillance-evidence-integrity/tree/main/witness',
     npm: null,
@@ -620,7 +639,7 @@ export const featuredRepos: FeaturedRepo[] = [
   {
     name: 'Witness',
     description:
-      'React Native (iOS + Android) civilian encounter recording app: video, audio, and real-time on-device transcript uploaded in priority order so evidence reaches safety on a weak signal. Cryptographically signed by the device and Arweave-anchored; handoff to Challenge the Footage for legal documents pre-populated with cryptographic proof.',
+      'React Native (iOS + Android) app that activates when you are pulled over or stopped by police, records video, audio, and real-time on-device transcript, and uploads all three in priority order so evidence reaches safety even on a weak signal. Cryptographically signed and Arweave-anchored; handoff to Challenge the Footage for legal documents. Free to use.',
     highlight: false,
     github:
       'https://github.com/danielsmithdevelopment/surveillance-evidence-integrity/tree/main/witness',
