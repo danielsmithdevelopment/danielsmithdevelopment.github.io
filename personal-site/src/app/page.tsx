@@ -19,6 +19,7 @@ import {
   site,
   type FeaturedProject,
   type WorkRole,
+  workRoleDetails,
   workRoles,
 } from '@/lib/site'
 import { formatDate } from '@/lib/formatDate'
@@ -164,7 +165,7 @@ function HiringCta() {
     <div className="rounded-2xl border border-teal-500/20 bg-teal-50/80 p-6 dark:border-teal-500/30 dark:bg-teal-950/20">
       <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-teal-100">
         <SparklesIcon className="h-6 w-6 flex-none" />
-        <span className="ml-3">Open to opportunities</span>
+        <span className="ml-3">Open to</span>
       </h2>
       <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
         {openToOpportunities.intro}
@@ -227,31 +228,49 @@ function Role({ role }: { role: WorkRole }) {
 
   let endLabel = typeof role.end === 'string' ? role.end : role.end.label
   let endDate = typeof role.end === 'string' ? role.end : role.end.dateTime
+  let details = workRoleDetails[role.company]
 
   return (
     <li className="flex gap-4">
       <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full bg-zinc-100 text-sm font-semibold text-zinc-600 shadow-md ring-1 ring-zinc-900/5 dark:bg-zinc-700/50 dark:text-zinc-300 dark:ring-zinc-700/50">
         {role.initial}
       </div>
-      <dl className="flex flex-auto flex-wrap gap-x-2">
-        <dt className="sr-only">Company</dt>
-        <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">
-          {role.company}
-        </dd>
-        <dt className="sr-only">Role</dt>
-        <dd className="text-xs text-zinc-500 dark:text-zinc-400">
-          {role.title}
-        </dd>
-        <dt className="sr-only">Date</dt>
-        <dd
-          className="ml-auto text-xs text-zinc-400 dark:text-zinc-500"
-          aria-label={`${startLabel} until ${endLabel}`}
-        >
-          <time dateTime={startDate}>{startLabel}</time>{' '}
-          <span aria-hidden="true">—</span>{' '}
-          <time dateTime={endDate}>{endLabel}</time>
-        </dd>
-      </dl>
+      <div className="flex-auto">
+        <dl className="flex flex-auto flex-wrap gap-x-2">
+          <dt className="sr-only">Company</dt>
+          <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">
+            {role.company}
+          </dd>
+          <dt className="sr-only">Role</dt>
+          <dd className="text-xs text-zinc-500 dark:text-zinc-400">
+            {role.title}
+          </dd>
+          <dt className="sr-only">Date</dt>
+          <dd
+            className="ml-auto text-xs text-zinc-400 dark:text-zinc-500"
+            aria-label={`${startLabel} until ${endLabel}`}
+          >
+            <time dateTime={startDate}>{startLabel}</time>{' '}
+            <span aria-hidden="true">—</span>{' '}
+            <time dateTime={endDate}>{endLabel}</time>
+          </dd>
+        </dl>
+        {details ? (
+          <div className="mt-2 space-y-2">
+            {details.summary.split('\n\n').map((paragraph) => (
+              <p
+                key={paragraph.slice(0, 48)}
+                className="text-xs leading-relaxed text-zinc-600 dark:text-zinc-400"
+              >
+                {paragraph}
+              </p>
+            ))}
+            <p className="text-[11px] leading-relaxed text-zinc-500 dark:text-zinc-500">
+              {details.stack}
+            </p>
+          </div>
+        ) : null}
+      </div>
     </li>
   )
 }
@@ -296,7 +315,7 @@ function Resume() {
         <BriefcaseIcon className="h-6 w-6 flex-none" />
         <span className="ml-3">Experience</span>
       </h2>
-      <ol className="mt-6 space-y-4">
+      <ol className="mt-6 space-y-8">
         {workRoles.map((role, roleIndex) => (
           <Role key={roleIndex} role={role} />
         ))}
