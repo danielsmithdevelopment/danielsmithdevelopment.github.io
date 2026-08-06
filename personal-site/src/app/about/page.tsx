@@ -43,6 +43,9 @@ function SocialLink({
   )
 }
 
+const linkClassName =
+  'font-medium text-teal-600 underline decoration-teal-500/40 underline-offset-2 hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300'
+
 export const metadata: Metadata = {
   title: 'About',
   description: site.description,
@@ -66,69 +69,103 @@ export default function About() {
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
             I&apos;m {site.name}. I build{' '}
             <span className="text-teal-600 dark:text-teal-400">
-              resilient infrastructure for fintech and Web3
+              blockchain infrastructure, AI agents, and public interest technology
             </span>
             .
           </h1>
           <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
             <p>
-              Senior Backend Platform Engineer with 7+ years building resilient,
-              large-scale infrastructure for fintech and Web3 platforms. Based in{' '}
-              {site.location}.
+              Daniel Smith is a Senior DevOps Engineer at Validation Cloud, where
+              he builds and secures institutional blockchain infrastructure —
+              Node API, enterprise staking, and AI-powered blockchain
+              intelligence — for enterprises managing billions in digital assets.
+              He also built the team&apos;s AI knowledge vault, a shared
+              cross-machine synchronized knowledge base that keeps engineering
+              context current across the team. Based in {site.location}.
             </p>
             <p>
-              Most recently at Phantom I architected multi-region Kubernetes +
-              CockroachDB failover systems, reduced infrastructure costs 65%, and
-              shipped two production AI tools: an automated Slack → Linear ticket
-              bot powered by LLMs and an official company-wide knowledge bot
-              (hackathon → maintained product) that ingests Notion, Linear,
-              GitHub, and Slack for natural-language queries.
+              His blockchain work began at IBM, where he developed the transaction
+              state machine for Sand Dollar, the world&apos;s first nationally
+              deployed retail central bank digital currency. Issued by the
+              Central Bank of The Bahamas and live since October 2020, Sand Dollar
+              is the reference case every central bank in the world now studies
+              when designing retail CBDC programs.
             </p>
             <p>
-              I care deeply about agentic AI and developer experience. I recently
-              open-sourced{' '}
-              <Link
-                href="https://github.com/danielsmithdevelopment/ClawQL"
-                className="font-medium text-teal-600 underline decoration-teal-500/40 underline-offset-2 hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300"
-              >
+              Outside his role at Validation Cloud, Daniel builds open-source
+              infrastructure at the intersection of cryptographic audit trails, AI
+              agents, and government accountability.
+            </p>
+            <p>
+              <Link href="https://docs.clawql.com" className={linkClassName}>
                 ClawQL
-              </Link>
-              , an MCP server for multi-protocol API access (OpenAPI, Swagger,
-              Google Discovery, optional GraphQL/gRPC) with lean token use on remote
-              calls, Obsidian vault memory, audit and session cache, and optional
-              tools for sandbox runs, persisted schedules, Slack notifications, and
-              more — see{' '}
+              </Link>{' '}
+              is a production TypeScript MCP server and agentic gateway that gives
+              AI agents structured, auditable, token-efficient access to APIs,
+              documents, and enterprise knowledge. Its security architecture — 32
+              modules covering Merkle-chained WORM audit logs, Arweave immutable
+              anchoring, supply chain signing, and kernel-level agent sandboxing —
+              is documented at{' '}
               <Link
-                href="https://docs.clawql.com"
-                className="font-medium text-teal-600 underline decoration-teal-500/40 underline-offset-2 hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300"
+                href="https://docs.clawql.com/security/best-practices"
+                className={linkClassName}
               >
-                docs.clawql.com
-              </Link>
-              . I also contributed agentic web-search + MCP skills to Google&apos;s
-              AI Edge Gallery and experiment with on-device ML and GenAI UX via my
-              fork of the gallery sample.
+                docs.clawql.com/security/best-practices
+              </Link>{' '}
+              and cited by engineers building production agentic systems.
             </p>
-            <p className="font-medium text-zinc-700 dark:text-zinc-300">
-              Previously:
-            </p>
-            <ul className="mt-2 list-disc space-y-2 pl-5">
-              <li>
-                Led blockchain infrastructure and multi-chain indexing at
-                DraftKings Marketplace
-              </li>
-              <li>
-                Designed Progressive Deployments, Canary Testing, and Zero Trust
-                security at Upgrade Inc.
-              </li>
-              <li>
-                Built the core state machine for the Bahamian Sand Dollar CBDC at
-                IBM Blockchain
-              </li>
-            </ul>
             <p>
-              Open to conversations on platform engineering, AI agents, Kubernetes,
-              and scalable AI infrastructure. Currently seeking new opportunities —
-              happy to connect!
+              <Link
+                href="https://challengethefootage.com"
+                className={linkClassName}
+              >
+                Challenge the Footage
+              </Link>{' '}
+              is a free public interest tool that generates legal documents for
+              challenging surveillance camera evidence in court. It addresses a
+              structural authentication gap: no major surveillance camera vendor
+              publicly documents cryptographic chain of custody for footage. The
+              tool generates motions in limine under FRE 901, Daubert challenges
+              under FRE 702 citing the industry&apos;s documented ~10%
+              misidentification error rate, Fourth Amendment suppression motions
+              using the Institute for Justice&apos;s database of officer abuse
+              cases, and Section 1983 civil damages demand letters. Public
+              defenders get free unlimited access.
+            </p>
+            <p>
+              The{' '}
+              <Link
+                href="https://github.com/danielsmithdevelopment/surveillance-evidence-integrity/tree/main/witness"
+                className={linkClassName}
+              >
+                Witness app
+              </Link>{' '}
+              records police encounters on iOS and Android, transcribes in real
+              time using on-device Whisper, and uploads transcript, audio, and
+              video in priority order so evidence reaches safety even on a weak
+              signal. Everything is cryptographically signed and Arweave-anchored
+              for independent verification.
+            </p>
+            <p>
+              The{' '}
+              <Link
+                href="https://docs.clawql.com/government"
+                className={linkClassName}
+              >
+                clawql-government
+              </Link>{' '}
+              specification extends the same Merkle-chaining and Arweave
+              anchoring infrastructure to government program outcome
+              accountability — addressing the structural gap California and other
+              states face in measuring whether bond-funded programs deliver the
+              outcomes voters were promised.
+            </p>
+            <p>
+              Daniel holds the view that the same engineering discipline that
+              makes financial systems trustworthy — immutable audit trails,
+              cryptographic chain of custody, independent verification — should
+              be applied to government programs, law enforcement evidence, and
+              public records.
             </p>
           </div>
         </div>

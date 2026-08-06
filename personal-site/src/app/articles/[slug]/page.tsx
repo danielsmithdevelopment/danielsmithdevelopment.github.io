@@ -54,7 +54,6 @@ export default async function LinkedInArticlePage({ params }: Props) {
         </p>
       ) : post.syndicationSource ? (
         <p className="mt-12 border-t border-zinc-100 pt-8 text-sm text-zinc-600 dark:border-zinc-700/40 dark:text-zinc-400">
-          Canonical curriculum and module-by-module versions:{' '}
           <Link
             href={post.syndicationSource.href}
             target="_blank"

@@ -77,6 +77,22 @@ Try it out: [npm — mcp-grpc-transport](https://www.npmjs.com/package/mcp-grpc-
 Repo & examples: part of the ClawQL project on GitHub.
 
 Feedback, bug reports, and PRs are very welcome. Let's make MCP even more cloud-native and production-ready together.`,
+
+  'california-bond-outcome-accountability': `On the structural gap between spending accountability and outcome accountability in California's bond programs — and the cryptographic audit infrastructure that makes outcome measurement independently verifiable.
+
+This piece connects the Oak Park surveillance contract failure to the broader bond accountability problem, and introduces the [clawql-government](https://docs.clawql.com/government) specification: Merkle-chaining and Arweave anchoring applied to government program outcomes so voters and auditors can independently verify whether bond-funded programs delivered what was promised.
+
+California spent roughly **$196 billion** without a durable, independently verifiable answer to a simple question: what did we get?
+
+Full essay on [PragmaticVectors](https://pragmaticvectors.com).`,
+
+  'surveillance-footage-chain-of-custody': `No major surveillance camera vendor publicly documents hash at capture, Merkle-chained audit logs, or external immutable anchoring. That is an **FRE 901 authentication** problem courts are beginning to recognize.
+
+This essay covers the technical architecture required to make footage independently verifiable — hash at capture, Merkle chaining, Arweave immutable anchoring — and introduces [Challenge the Footage](https://challengethefootage.com): free legal document generation for public defenders challenging ALPR, body camera, and civilian recording evidence.
+
+Source and model legislation live in the [surveillance-evidence-integrity](https://github.com/danielsmithdevelopment/surveillance-evidence-integrity) repository.
+
+Full essay on [PragmaticVectors](https://pragmaticvectors.com).`,
 } as const
 
 export type FeaturedLinkedInPostSlug = keyof typeof featuredLinkedInPostBodies

@@ -37,7 +37,7 @@ function Article({ article }: { article: ArticleWithSlug }) {
 export const metadata: Metadata = {
   title: 'Articles',
   description:
-    'Full text of featured LinkedIn posts, readable on this site, with links back to each thread.',
+    'Essays and long-form writing on public interest technology, agentic AI security, and platform engineering — including PragmaticVectors pieces and LinkedIn mirrors.',
 }
 
 export default async function ArticlesIndex() {
@@ -46,7 +46,7 @@ export default async function ArticlesIndex() {
   return (
     <SimpleLayout
       title="Articles"
-      intro="Each item is the full post mirrored from LinkedIn (same content as the thread, formatted for the site). Open a post to read it here, then use the link at the bottom for comments and reactions on LinkedIn."
+      intro="Long-form writing and mirrored posts — PragmaticVectors essays, ClawQL security curriculum pillars, and LinkedIn threads formatted for the site."
     >
       <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
         <div className="flex max-w-3xl flex-col space-y-16">

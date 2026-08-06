@@ -4,11 +4,15 @@ import { featuredLinkedInPostBodies } from '@/lib/featuredLinkedInPostBodies'
 /** Site-wide copy and links — update here to refresh resume CTAs and featured work. */
 export const site = {
   name: 'Daniel Smith',
+  /** Meta / document title suffix: “Daniel Smith — …” */
   tagline:
-    'Senior Backend Platform Engineer | AI Agents & MCP | Kubernetes & Cloud Infrastructure',
+    'Blockchain Infrastructure · AI Agents · Public Interest Technology',
+  /** Home hero H1 */
+  headline:
+    'Senior DevOps Engineer · Blockchain Infrastructure · AI Agents · Public Interest Technology',
   /** OpenGraph / meta default description */
   description:
-    'Senior Backend Platform Engineer with 7+ years architecting resilient Kubernetes platforms, AI-powered tools, and multi-cloud DevOps solutions. Actively seeking new opportunities.',
+    "Senior DevOps Engineer at Validation Cloud building and securing institutional blockchain infrastructure. Creator of the world's first CBDC transaction engine (Sand Dollar), ClawQL agentic AI platform, and challengethefootage.com — open-source tools for government accountability and civil rights.",
   /** Public site URL (set NEXT_PUBLIC_SITE_URL in CI for canonical links and RSS) */
   url:
     (typeof process !== 'undefined' && process.env.NEXT_PUBLIC_SITE_URL) ||
@@ -16,9 +20,21 @@ export const site = {
   location: 'San Gabriel, CA',
   email: 'danielsmithdevelopment@gmail.com',
   phoneDisplay: '626.223.0629',
-  hireable: true,
+  hireable: false,
+  /**
+   * Plain-text summary aligned with the resume PDF summary section.
+   * Prefer `homeSummaryMarkdown` for the home hero (links + paragraphs).
+   */
   bioShort:
-    'Senior Backend Platform Engineer with 7+ years architecting resilient Kubernetes platforms, AI-powered tools, and multi-cloud DevOps solutions. Delivered large-scale migrations that cut costs 65%, boosted developer experience 125%+, and enabled zero-downtime operations. Recently shipped production AI integrations at Phantom and open-sourced MCP/agentic contributions. Passionate about scalable, intelligent infrastructure and actively seeking new opportunities.',
+    "Senior DevOps Engineer at Validation Cloud building and securing institutional blockchain infrastructure — Node API, staking, and AI tooling — for enterprises managing billions in digital assets. Previously at IBM Blockchain, developed the transaction state machine for Sand Dollar — the world's first nationally deployed retail CBDC, issued by the Central Bank of The Bahamas (sanddollar.bs, live since October 2020). Open-source work spans ClawQL (production agentic AI gateway), challengethefootage.com (surveillance evidence accountability tools used by public defenders), and the clawql-government specification for cryptographic government program outcome measurement. Background includes Phantom, DraftKings, and Upgrade spanning Kubernetes infrastructure, blockchain systems, and SRE.",
+  /**
+   * Home hero summary (markdown). Links render via ArticleMarkdown.
+   */
+  homeSummaryMarkdown: `Senior DevOps Engineer at [Validation Cloud](https://validationcloud.io) building and securing institutional blockchain infrastructure — Node API, enterprise staking, and Mavrik AI-powered blockchain intelligence — for clients including Chainlink, Consensys, BitGo, Anchorage, and ether.fi. Built the team's AI knowledge vault, a shared cross-machine synchronized knowledge base that keeps engineering context current across the team; work also spans DevOps infrastructure and security across the blockchain node and staking stack.
+
+Previously at IBM Blockchain, I developed the transaction state machine for [Sand Dollar](https://sanddollar.bs) — the world's first nationally deployed retail central bank digital currency, issued by the Central Bank of The Bahamas and live since October 2020. Every CBDC research program currently studying retail digital currency deployment uses the Bahamas as the reference case.
+
+Outside my day job I build open-source infrastructure at the intersection of AI agents, cryptographic audit trails, and government accountability. [ClawQL](https://docs.clawql.com) is a production TypeScript MCP server and agentic gateway used by developers and enterprises. [challengethefootage.com](https://challengethefootage.com) and the [Witness app](https://github.com/danielsmithdevelopment/surveillance-evidence-integrity) provide free legal tools and cryptographically secured civilian recording for people facing surveillance camera evidence in court.`,
   github: {
     username: 'danielsmithdevelopment',
     url: 'https://github.com/danielsmithdevelopment',
@@ -31,26 +47,44 @@ export const site = {
 } as const
 
 /** Set to your profile URL to show LinkedIn on the home hero; leave null to hide. */
-export const linkedinProfile: string | null = "https://linkedin.com/in/danielsmithdev"
+export const linkedinProfile: string | null =
+  'https://linkedin.com/in/danielsmithdev'
 
-/** Home page — AI / agents angle for recruiting */
-export const aiHighlights = [
+/** External destinations surfaced in the footer (and optionally elsewhere). */
+export const footerExternalLinks = [
   {
-    title: 'Agents & APIs',
-    body:
-      'Shipped ClawQL, an open-source MCP server: agents search and execute over OpenAPI/Swagger/Google Discovery (optional GraphQL/gRPC upstreams) with lean responses; bundled multi-provider graphs; vault memory (memory_ingest / memory_recall), audit, and cache; plus optional sandbox, schedules, Slack notify, Label Studio HITL, Onyx search, and more — stdio, HTTP, and gRPC. See https://docs.clawql.com.',
+    label: 'Challenge the Footage',
+    href: 'https://challengethefootage.com',
   },
   {
-    title: 'On-device ML & GenAI',
-    body:
-      'Forked and extended the Android “gallery” sample to explore local inference and GenAI UX — practical experimentation beyond pure backend work.',
+    label: 'Surveillance Evidence Integrity',
+    href: 'https://github.com/danielsmithdevelopment/surveillance-evidence-integrity',
   },
   {
-    title: 'Platform at scale',
-    body:
-      'Most recently at Phantom I architected multi-region Kubernetes, Istio, and CockroachDB failover systems; chaos engineering and K6 load testing; developer-experience scores up 125%+ and 133% on key CoreDX measures; and a 65% infra cost reduction after a Lambda-to-K8s migration.',
+    label: 'PragmaticVectors',
+    href: 'https://pragmaticvectors.com',
   },
 ] as const
+
+/** Home sidebar — current focus areas */
+export const aiHighlights = [
+  {
+    title: 'Institutional blockchain infrastructure',
+    body:
+      'Senior DevOps Engineer at Validation Cloud: Node API (#1 globally by CompareNodes), SOC2 Type II enterprise staking, and Mavrik AI-powered blockchain intelligence for Chainlink, Consensys, BitGo, Anchorage, and ether.fi — plus the team AI knowledge vault and security work across the node and staking stack.',
+  },
+  {
+    title: 'Agents & MCP',
+    body:
+      'ClawQL is a production TypeScript MCP server and agentic gateway — structured, auditable API access with vault memory, Merkle-chained WORM audit logs, and optional sandbox, schedules, and Slack notify. See https://docs.clawql.com.',
+  },
+  {
+    title: 'Public interest technology',
+    body:
+      'Challenge the Footage and Witness bring cryptographic chain of custody to surveillance evidence and civilian encounter recording — free legal tools for public defenders and open-source standards for cities and legislatures.',
+  },
+] as const
+
 
 export type WorkRole = {
   company: string
@@ -61,8 +95,16 @@ export type WorkRole = {
   end: string | { label: string; dateTime: string }
 }
 
-/** Pulled from Daniel-Smith-Resume-final.pdf */
+/** Pulled from Daniel-Smith-Resume-final.pdf + current role */
 export const workRoles: WorkRole[] = [
+  {
+    company: 'Validation Cloud',
+    title: 'Senior DevOps Engineer',
+    initial: 'V',
+    start: { label: 'Sep 2025', dateTime: '2025-09-01' },
+    end: { label: 'Present', dateTime: '2026-08-06' },
+  },
+
   {
     company: 'Phantom',
     title: 'Senior Backend Platform Engineer',
@@ -92,6 +134,26 @@ export const workRoles: WorkRole[] = [
     end: { label: 'Aug 2020', dateTime: '2020-08-31' },
   },
 ]
+
+/** Optional longer blurbs for experience entries (resume / about). */
+export const workRoleDetails: Record<
+  string,
+  { summary: string; stack: string }
+> = {
+  'Validation Cloud': {
+    summary:
+      "Institutional blockchain infrastructure platform — Node API (#1 globally by CompareNodes), enterprise staking (SOC2 Type II certified), and Mavrik AI-powered blockchain intelligence — serving Chainlink, Consensys, BitGo, Anchorage, and ether.fi. Built the team's AI knowledge vault — a shared, cross-machine synchronized knowledge base that keeps engineering context current across the entire team. Work also spans DevOps infrastructure and security across the blockchain node and staking stack.",
+    stack:
+      'TypeScript · Kubernetes · Blockchain · AI tooling · DevOps · Security',
+  },
+
+  'IBM Blockchain': {
+    summary:
+      "Developed the transaction state machine for Sand Dollar — the world's first nationally deployed retail central bank digital currency, issued by the Central Bank of The Bahamas and live since October 2020 at sanddollar.bs. Enabled asset bridging between domestic and international currency versions supporting financial inclusion across a 700-island nation. Designed high-availability, disaster recovery, and security compliance plans for payments and supply chain platforms across a multi-cloud Kubernetes setup with cloud, region, and AZ-level automatic failover. Configured observability for Stellar Lumens Validator Nodes.",
+    stack:
+      'Golang · TypeScript · AWS · GCP · IBM Cloud · Kubernetes · Helm · Istio · Blockchain · CBDC',
+  },
+}
 
 export type FeaturedRepo = {
   name: string
@@ -136,8 +198,108 @@ export type FeaturedLinkedInPost = {
   extraLinks?: { label: string; href: string }[]
 }
 
+export type SpeakingTopic = {
+  title: string
+  body: string
+}
+
+/** Suggested speaking topics for /speaking */
+export const speakingTopics: SpeakingTopic[] = [
+  {
+    title: 'Cryptographic Chain of Custody for Surveillance Evidence',
+    body:
+      'The authentication gap no major ALPR or body camera vendor can currently close, and the technical architecture — hash at capture, Merkle chaining, Arweave anchoring — that closes it. For legal technology conferences, civil liberties organizations, and government technology forums.',
+  },
+  {
+    title: 'CBDC Design and Deployment: Lessons from Sand Dollar',
+    body:
+      "What it actually took to ship the world's first nationally deployed retail central bank digital currency, what worked, what didn't, and what every central bank studying CBDC deployment should know. For fintech conferences, central bank working groups, and government financial modernization programs.",
+  },
+  {
+    title:
+      'Agentic AI Security: From Kernel-Level Containment to Supply Chain Verification',
+    body:
+      "The 32-module security architecture behind ClawQL's agentic gateway — Seatbelt sandboxing, Merkle-chained WORM audit trails, Cosign supply chain signing, and Arweave immutable anchoring. For security conferences, enterprise AI teams, and CISO audiences.",
+  },
+  {
+    title: 'Government Outcome Accountability Infrastructure',
+    body:
+      "Why California can't tell voters whether $196 billion in bonds produced promised outcomes, and the cryptographic audit architecture that makes outcome measurement independently verifiable. For government technology conferences, state auditor associations, and legislative policy staff.",
+  },
+]
+
+/** Home “Open to opportunities” sidebar */
+export const openToOpportunities = {
+  intro:
+    "I'm not actively seeking employment — I'm building at Validation Cloud and on open-source public interest projects.",
+  items: [
+    {
+      title: 'Government and policy collaboration',
+      body:
+        'Pilot programs for government accountability technology, cryptographic audit infrastructure for public programs, or advisory roles related to CBDC, digital public infrastructure, or surveillance policy.',
+    },
+    {
+      title: 'Technical partnerships',
+      body:
+        'Integrations with ClawQL, clawql-surveillance, or the Challenge the Footage ecosystem.',
+    },
+    {
+      title: 'Speaking',
+      body:
+        'On agentic AI security, blockchain infrastructure at government scale, CBDC design and deployment, or surveillance evidence accountability.',
+      href: '/speaking',
+      hrefLabel: 'Speaking page →',
+    },
+    {
+      title: 'Press and research inquiries',
+      body:
+        'Regarding Sand Dollar, Challenge the Footage, or the surveillance evidence integrity work.',
+    },
+  ],
+} as const
+
 /** Home page cards + /articles — metadata here; bodies in `featuredLinkedInPostBodies.ts` or generated curriculum pillars. */
 export const featuredLinkedInPosts: FeaturedLinkedInPost[] = [
+  {
+    slug: 'california-bond-outcome-accountability',
+    date: '2026-08-01',
+    title: "California Spent $196 Billion and Can't Tell You What It Got",
+    description:
+      "On the structural gap between spending accountability and outcome accountability in California's bond programs — and the cryptographic audit infrastructure that makes outcome measurement independently verifiable. Connects the Oak Park surveillance contract failure to the broader bond accountability problem, and introduces the clawql-government specification.",
+    body: featuredLinkedInPostBodies['california-bond-outcome-accountability'],
+    syndicationSource: {
+      label: 'Read on PragmaticVectors →',
+      href: 'https://pragmaticvectors.com',
+    },
+    extraLinks: [
+      {
+        label: 'clawql-government',
+        href: 'https://docs.clawql.com/government',
+      },
+    ],
+  },
+  {
+    slug: 'surveillance-footage-chain-of-custody',
+    date: '2026-08-01',
+    title: 'Surveillance Footage Has a Chain of Custody Problem',
+    description:
+      'No major surveillance camera vendor publicly documents hash at capture, Merkle-chained audit logs, or external immutable anchoring. This is an FRE 901 authentication problem that courts are beginning to recognize. Covers the full technical architecture required to make footage independently verifiable, and introduces Challenge the Footage.',
+    body: featuredLinkedInPostBodies['surveillance-footage-chain-of-custody'],
+    syndicationSource: {
+      label: 'Read on PragmaticVectors →',
+      href: 'https://pragmaticvectors.com',
+    },
+    extraLinks: [
+      {
+        label: 'Challenge the Footage',
+        href: 'https://challengethefootage.com',
+      },
+      {
+        label: 'GitHub',
+        href: 'https://github.com/danielsmithdevelopment/surveillance-evidence-integrity',
+      },
+    ],
+  },
   {
     slug: 'truenas-scale-homelab-recovery',
     date: '2026-01-20',
@@ -191,7 +353,9 @@ export const featuredLinkedInPosts: FeaturedLinkedInPost[] = [
       'Agentic AI Security, Part 1: Supply Chain, Golden Images, and Admission Control',
     description:
       'Long-form consolidation of curriculum modules 1–3: digest pinning and private mirrors, golden images and signing in CI, and cluster admission policy for agent and MCP runtimes—with links to each module on ClawQL Docs.',
-    body: agenticSecurityCurriculumPillarBodies['agentic-ai-security-supply-chain-and-admission'],
+    body: agenticSecurityCurriculumPillarBodies[
+      'agentic-ai-security-supply-chain-and-admission'
+    ],
     syndicationSource: {
       label: 'Agentic AI Security Curriculum (ClawQL Docs)',
       href: 'https://docs.clawql.com/security/best-practices',
@@ -210,7 +374,9 @@ export const featuredLinkedInPosts: FeaturedLinkedInPost[] = [
       'Agentic AI Security, Part 2: Identity, Least Privilege, and Zero Trust',
     description:
       'Modules 4–6 in one guide: scoped identities for agents and tools, zero-trust fundamentals, and advanced Vault, HSM, and provenance patterns—with canonical links per module.',
-    body: agenticSecurityCurriculumPillarBodies['agentic-ai-security-identity-zero-trust'],
+    body: agenticSecurityCurriculumPillarBodies[
+      'agentic-ai-security-identity-zero-trust'
+    ],
     syndicationSource: {
       label: 'Agentic AI Security Curriculum (ClawQL Docs)',
       href: 'https://docs.clawql.com/security/best-practices',
@@ -229,7 +395,9 @@ export const featuredLinkedInPosts: FeaturedLinkedInPost[] = [
       'Agentic AI Security, Part 3: Service Mesh, Sandboxing, and MCP Runtime Protection',
     description:
       'Modules 7–9 combined: RBAC and mTLS with Istio, Kata vs gVisor sandbox tradeoffs, and MCP runtime protection—plus links to the full modules on docs.clawql.com.',
-    body: agenticSecurityCurriculumPillarBodies['agentic-ai-security-mesh-sandbox-mcp'],
+    body: agenticSecurityCurriculumPillarBodies[
+      'agentic-ai-security-mesh-sandbox-mcp'
+    ],
     syndicationSource: {
       label: 'Agentic AI Security Curriculum (ClawQL Docs)',
       href: 'https://docs.clawql.com/security/best-practices',
@@ -248,7 +416,9 @@ export const featuredLinkedInPosts: FeaturedLinkedInPost[] = [
       'Agentic AI Security, Part 4: Data Classification, Model Integrity, and Runtime Monitoring',
     description:
       'Modules 10–12: data classification and PII in logs, verifying model weights, and observability for agentic workloads—consolidated with outbound links to each original module.',
-    body: agenticSecurityCurriculumPillarBodies['agentic-ai-security-data-models-observability'],
+    body: agenticSecurityCurriculumPillarBodies[
+      'agentic-ai-security-data-models-observability'
+    ],
     syndicationSource: {
       label: 'Agentic AI Security Curriculum (ClawQL Docs)',
       href: 'https://docs.clawql.com/security/best-practices',
@@ -267,7 +437,9 @@ export const featuredLinkedInPosts: FeaturedLinkedInPost[] = [
       'Agentic AI Security, Part 5: Incident Response, Automation, GPU, Workstations, and Production',
     description:
       'Modules 13–17 in depth: automated containment, IR and PICERL, GPU abuse controls, secure local development, and production hardening for agent stacks—with links to every module.',
-    body: agenticSecurityCurriculumPillarBodies['agentic-ai-security-operations-and-production'],
+    body: agenticSecurityCurriculumPillarBodies[
+      'agentic-ai-security-operations-and-production'
+    ],
     syndicationSource: {
       label: 'Agentic AI Security Curriculum (ClawQL Docs)',
       href: 'https://docs.clawql.com/security/best-practices',
@@ -286,7 +458,9 @@ export const featuredLinkedInPosts: FeaturedLinkedInPost[] = [
       'Agentic AI Security, Part 6: Threat Modeling, OWASP Agentic Top 10, and Quarterly Review',
     description:
       'Modules 18–20: STRIDE for agentic AI, OWASP Agentic Top 10 mitigations, and a quarterly security review checklist—merged here with links to the canonical curriculum.',
-    body: agenticSecurityCurriculumPillarBodies['agentic-ai-security-governance-and-owasp-agentic'],
+    body: agenticSecurityCurriculumPillarBodies[
+      'agentic-ai-security-governance-and-owasp-agentic'
+    ],
     syndicationSource: {
       label: 'Agentic AI Security Curriculum (ClawQL Docs)',
       href: 'https://docs.clawql.com/security/best-practices',
@@ -302,6 +476,32 @@ export const featuredLinkedInPosts: FeaturedLinkedInPost[] = [
 
 /** Home page spotlight projects (aligned with resume “Open Source and Projects”) */
 export const featuredProjects: FeaturedProject[] = [
+  {
+    name: 'Sand Dollar — World\'s First Retail CBDC',
+    description:
+      "Transaction state machine for the Central Bank of The Bahamas' Sand Dollar — the first nationally deployed retail central bank digital currency in the world, launched October 2020. Enabled asset bridging between domestic and international currency versions across a 700-island nation with limited traditional banking infrastructure. Built at IBM Blockchain in partnership with the Central Bank of The Bahamas and NZIA. Golang · TypeScript · Blockchain · Central Bank · Financial Inclusion.",
+    github: null,
+    npm: null,
+    live: 'https://sanddollar.bs',
+  },
+  {
+    name: 'Challenge the Footage — Surveillance Evidence Integrity',
+    description:
+      'Open-source legal and technical infrastructure for challenging surveillance camera evidence in court. Generates four legal document templates (FRE 901, FRE 702 / Daubert, Fourth Amendment suppression, Section 1983) for any major surveillance vendor. Free for public defenders. Covers ALPR, body cameras, and civilian recordings via Witness. Cloudflare Workers · ClawQL · React Native · Arweave · TypeScript.',
+    github:
+      'https://github.com/danielsmithdevelopment/surveillance-evidence-integrity',
+    npm: null,
+    live: 'https://challengethefootage.com',
+  },
+  {
+    name: 'Witness — Civilian Encounter Recording App',
+    description:
+      'React Native (iOS + Android) app that activates when you are pulled over or stopped by police, records video, audio, and real-time on-device transcript, and uploads all three artifacts in priority order — transcript first, audio second, video third — so evidence reaches safety even on a weak signal. Cryptographically signed and Arweave-anchored. React Native · Expo · Whisper · Cloudflare R2 · Arweave · TypeScript.',
+    github:
+      'https://github.com/danielsmithdevelopment/surveillance-evidence-integrity/tree/main/witness',
+    npm: null,
+    live: null,
+  },
   {
     name: 'ClawQL',
     description:
@@ -352,6 +552,35 @@ export const featuredProjects: FeaturedProject[] = [
  * Reorder here; `highlight` drives the “AI / agents” eyebrow on the projects page.
  */
 export const featuredRepos: FeaturedRepo[] = [
+  {
+    name: 'Sand Dollar — World\'s First Retail CBDC',
+    description:
+      "Transaction state machine for the Central Bank of The Bahamas' Sand Dollar — the first nationally deployed retail central bank digital currency in the world, launched October 2020. Enabled asset bridging between domestic and international currency versions across a 700-island nation. Built at IBM Blockchain with the Central Bank of The Bahamas and NZIA. Live at sanddollar.bs on iOS and Android.",
+    highlight: false,
+    github: null,
+    npm: null,
+    live: 'https://sanddollar.bs',
+  },
+  {
+    name: 'Challenge the Footage',
+    description:
+      'Open-source legal and technical infrastructure for challenging surveillance camera evidence in court. Generates FRE 901, FRE 702 / Daubert, Fourth Amendment suppression, and Section 1983 templates for major surveillance vendors. Free for public defenders. Model contract language, legislation, and technical standards published as open source.',
+    highlight: false,
+    github:
+      'https://github.com/danielsmithdevelopment/surveillance-evidence-integrity',
+    npm: null,
+    live: 'https://challengethefootage.com',
+  },
+  {
+    name: 'Witness',
+    description:
+      'React Native (iOS + Android) civilian encounter recording app: video, audio, and real-time on-device transcript uploaded in priority order so evidence reaches safety on a weak signal. Cryptographically signed by the device and Arweave-anchored; handoff to Challenge the Footage for legal documents pre-populated with cryptographic proof.',
+    highlight: false,
+    github:
+      'https://github.com/danielsmithdevelopment/surveillance-evidence-integrity/tree/main/witness',
+    npm: null,
+    live: null,
+  },
   {
     name: 'ClawQL',
     description:
