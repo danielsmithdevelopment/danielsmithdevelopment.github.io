@@ -9,10 +9,10 @@ export const site = {
     'Blockchain Infrastructure · AI Agents · Public Interest Technology',
   /** Home hero H1 */
   headline:
-    'Platform Engineer · Blockchain Infrastructure · AI Agents · Public Interest Technology',
+    'Senior DevOps Engineer · Blockchain Infrastructure · AI Agents · Public Interest Technology',
   /** OpenGraph / meta default description */
   description:
-    "Platform engineer at Validation Cloud building institutional blockchain infrastructure. Creator of the world's first CBDC transaction engine (Sand Dollar), ClawQL agentic AI platform, and challengethefootage.com — open-source tools for government accountability and civil rights.",
+    "Senior DevOps Engineer at Validation Cloud building and securing institutional blockchain infrastructure. Creator of the world's first CBDC transaction engine (Sand Dollar), ClawQL agentic AI platform, and challengethefootage.com — open-source tools for government accountability and civil rights.",
   /** Public site URL (set NEXT_PUBLIC_SITE_URL in CI for canonical links and RSS) */
   url:
     (typeof process !== 'undefined' && process.env.NEXT_PUBLIC_SITE_URL) ||
@@ -26,11 +26,11 @@ export const site = {
    * Prefer `homeSummaryMarkdown` for the home hero (links + paragraphs).
    */
   bioShort:
-    "Platform engineer at Validation Cloud building institutional blockchain node API, staking infrastructure, and AI-powered blockchain intelligence for enterprises managing billions in digital assets. Previously at IBM Blockchain, developed the transaction state machine for Sand Dollar — the world's first nationally deployed retail CBDC, issued by the Central Bank of The Bahamas (sanddollar.bs, live since October 2020). Open-source work spans ClawQL (production agentic AI gateway), challengethefootage.com (surveillance evidence accountability tools used by public defenders), and the clawql-government specification for cryptographic government program outcome measurement. Background includes Phantom, DraftKings, and Upgrade spanning Kubernetes infrastructure, blockchain systems, and SRE.",
+    "Senior DevOps Engineer at Validation Cloud building and securing institutional blockchain infrastructure — Node API, staking, and AI tooling — for enterprises managing billions in digital assets. Previously at IBM Blockchain, developed the transaction state machine for Sand Dollar — the world's first nationally deployed retail CBDC, issued by the Central Bank of The Bahamas (sanddollar.bs, live since October 2020). Open-source work spans ClawQL (production agentic AI gateway), challengethefootage.com (surveillance evidence accountability tools used by public defenders), and the clawql-government specification for cryptographic government program outcome measurement. Background includes Phantom, DraftKings, and Upgrade spanning Kubernetes infrastructure, blockchain systems, and SRE.",
   /**
    * Home hero summary (markdown). Links render via ArticleMarkdown.
    */
-  homeSummaryMarkdown: `Platform engineer at [Validation Cloud](https://validationcloud.io) building institutional-grade blockchain node API, staking infrastructure, and AI-powered blockchain intelligence (Mavrik) for clients including Chainlink, Consensys, and BitGo.
+  homeSummaryMarkdown: `Senior DevOps Engineer at [Validation Cloud](https://validationcloud.io) building and securing institutional blockchain infrastructure — Node API, enterprise staking, and Mavrik AI-powered blockchain intelligence — for clients including Chainlink, Consensys, BitGo, Anchorage, and ether.fi. Built the team's AI knowledge vault, a shared cross-machine synchronized knowledge base that keeps engineering context current across the team; work also spans DevOps infrastructure and security across the blockchain node and staking stack.
 
 Previously at IBM Blockchain, I developed the transaction state machine for [Sand Dollar](https://sanddollar.bs) — the world's first nationally deployed retail central bank digital currency, issued by the Central Bank of The Bahamas and live since October 2020. Every CBDC research program currently studying retail digital currency deployment uses the Bahamas as the reference case.
 
@@ -71,7 +71,7 @@ export const aiHighlights = [
   {
     title: 'Institutional blockchain infrastructure',
     body:
-      'At Validation Cloud: Node API (ranked #1 globally by CompareNodes), SOC2 Type II staking, and Mavrik AI-powered blockchain intelligence for Chainlink, Consensys, BitGo, Anchorage, and ether.fi.',
+      'Senior DevOps Engineer at Validation Cloud: Node API (#1 globally by CompareNodes), SOC2 Type II enterprise staking, and Mavrik AI-powered blockchain intelligence for Chainlink, Consensys, BitGo, Anchorage, and ether.fi — plus the team AI knowledge vault and security work across the node and staking stack.',
   },
   {
     title: 'Agents & MCP',
@@ -84,6 +84,7 @@ export const aiHighlights = [
       'Challenge the Footage and Witness bring cryptographic chain of custody to surveillance evidence and civilian encounter recording — free legal tools for public defenders and open-source standards for cities and legislatures.',
   },
 ] as const
+
 
 export type WorkRole = {
   company: string
@@ -98,11 +99,12 @@ export type WorkRole = {
 export const workRoles: WorkRole[] = [
   {
     company: 'Validation Cloud',
-    title: 'Senior Platform Engineer',
+    title: 'Senior DevOps Engineer',
     initial: 'V',
     start: { label: 'Sep 2025', dateTime: '2025-09-01' },
     end: { label: 'Present', dateTime: '2026-08-06' },
   },
+
   {
     company: 'Phantom',
     title: 'Senior Backend Platform Engineer',
@@ -140,10 +142,11 @@ export const workRoleDetails: Record<
 > = {
   'Validation Cloud': {
     summary:
-      'Institutional blockchain infrastructure platform serving enterprises managing billions in digital assets. Building Node API (ranked #1 globally by CompareNodes), staking infrastructure (SOC2 Type II certified), and Mavrik — AI-powered blockchain data intelligence for institutional clients including Chainlink, Consensys, BitGo, Anchorage, and ether.fi.',
+      "Institutional blockchain infrastructure platform — Node API (#1 globally by CompareNodes), enterprise staking (SOC2 Type II certified), and Mavrik AI-powered blockchain intelligence — serving Chainlink, Consensys, BitGo, Anchorage, and ether.fi. Built the team's AI knowledge vault — a shared, cross-machine synchronized knowledge base that keeps engineering context current across the entire team. Work also spans DevOps infrastructure and security across the blockchain node and staking stack.",
     stack:
-      'TypeScript · Blockchain · Kubernetes · Node API · Staking · AI · Institutional Infrastructure',
+      'TypeScript · Kubernetes · Blockchain · AI tooling · DevOps · Security',
   },
+
   'IBM Blockchain': {
     summary:
       "Developed the transaction state machine for Sand Dollar — the world's first nationally deployed retail central bank digital currency, issued by the Central Bank of The Bahamas and live since October 2020 at sanddollar.bs. Enabled asset bridging between domestic and international currency versions supporting financial inclusion across a 700-island nation. Designed high-availability, disaster recovery, and security compliance plans for payments and supply chain platforms across a multi-cloud Kubernetes setup with cloud, region, and AZ-level automatic failover. Configured observability for Stellar Lumens Validator Nodes.",

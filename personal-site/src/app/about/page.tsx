@@ -75,10 +75,13 @@ export default function About() {
           </h1>
           <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
             <p>
-              Daniel Smith is a platform engineer at Validation Cloud, where he
-              builds institutional blockchain infrastructure — Node API, staking,
-              and AI-powered blockchain intelligence — for enterprises managing
-              billions in digital assets. Based in {site.location}.
+              Daniel Smith is a Senior DevOps Engineer at Validation Cloud, where
+              he builds and secures institutional blockchain infrastructure —
+              Node API, enterprise staking, and AI-powered blockchain
+              intelligence — for enterprises managing billions in digital assets.
+              He also built the team&apos;s AI knowledge vault, a shared
+              cross-machine synchronized knowledge base that keeps engineering
+              context current across the team. Based in {site.location}.
             </p>
             <p>
               His blockchain work began at IBM, where he developed the transaction
