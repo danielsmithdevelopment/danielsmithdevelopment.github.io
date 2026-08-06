@@ -95,7 +95,7 @@ export type WorkRole = {
   end: string | { label: string; dateTime: string }
 }
 
-/** Pulled from Daniel-Smith-Resume-final.pdf + current role */
+/** Pulled from Daniel-Smith-Resume-final.pdf + current role + earlier career */
 export const workRoles: WorkRole[] = [
   {
     company: 'Validation Cloud',
@@ -104,7 +104,6 @@ export const workRoles: WorkRole[] = [
     start: { label: 'Jun 2026', dateTime: '2026-06-01' },
     end: { label: 'Present', dateTime: '2026-08-06' },
   },
-
   {
     company: 'Phantom',
     title: 'Senior Backend Platform Engineer',
@@ -133,6 +132,34 @@ export const workRoles: WorkRole[] = [
     start: { label: 'May 2018', dateTime: '2018-05-01' },
     end: { label: 'Aug 2020', dateTime: '2020-08-31' },
   },
+  {
+    company: 'Granite Solutions Group',
+    title: 'Financial Blockchain Operations Onboarding Engineer',
+    initial: 'G',
+    start: { label: 'Jun 2018', dateTime: '2018-06-01' },
+    end: { label: 'Sep 2018', dateTime: '2018-09-30' },
+  },
+  {
+    company: 'USC Laboratory of Neuroimaging',
+    title: 'Software Engineer',
+    initial: 'L',
+    start: { label: 'May 2016', dateTime: '2016-05-01' },
+    end: { label: 'May 2018', dateTime: '2018-05-31' },
+  },
+  {
+    company: 'USC Trojan Events',
+    title: 'Webmaster',
+    initial: 'T',
+    start: { label: 'Jun 2016', dateTime: '2016-06-01' },
+    end: { label: 'May 2017', dateTime: '2017-05-31' },
+  },
+  {
+    company: 'Freelance',
+    title: 'Full Stack Developer',
+    initial: 'F',
+    start: { label: 'Jul 2015', dateTime: '2015-07-01' },
+    end: { label: '2018', dateTime: '2018-12-31' },
+  },
 ]
 
 /** Optional longer blurbs for experience entries (resume / about). */
@@ -146,12 +173,31 @@ export const workRoleDetails: Record<
     stack:
       'TypeScript · Kubernetes · Blockchain · AI tooling · DevOps · Security',
   },
-
   'IBM Blockchain': {
     summary:
       "Developed the transaction state machine for Sand Dollar — the world's first nationally deployed retail central bank digital currency, issued by the Central Bank of The Bahamas and live since October 2020 at sanddollar.bs. Enabled asset bridging between domestic and international currency versions supporting financial inclusion across a 700-island nation. Designed high-availability, disaster recovery, and security compliance plans for payments and supply chain platforms across a multi-cloud Kubernetes setup with cloud, region, and AZ-level automatic failover. Configured observability for Stellar Lumens Validator Nodes.",
     stack:
       'Golang · TypeScript · AWS · GCP · IBM Cloud · Kubernetes · Helm · Istio · Blockchain · CBDC',
+  },
+  'Granite Solutions Group': {
+    summary:
+      "Consulting engagement bridging clients onto IBM's blockchain platforms. Built client-facing onboarding portal in Angular and Firebase interfacing with a Golang microservices API. Enabled API sandboxing from Swagger specs. Traveled internationally to provide in-person solutions engineering and blockchain adoption education.",
+    stack: 'Golang · TypeScript · Angular · Firebase · AWS · GCP · IBM Cloud · Docker',
+  },
+  'USC Laboratory of Neuroimaging': {
+    summary:
+      "Built internal tooling for USC's neuroimaging research lab. Wrote a multi-threaded Golang service with semaphore-controlled concurrency to scrape and monitor department websites, with automated outage detection from reported data. Built REST API endpoints and backend features for a custom internal CMS managing user data across department sites.",
+    stack: 'Golang · PHP · MySQL · Docker · Angular · Jenkins · JIRA',
+  },
+  'USC Trojan Events': {
+    summary:
+      'Built backend features for the internal content and employee management system based on department manager requests.',
+    stack: 'PHP · CodeIgniter · Node.js · Bootstrap',
+  },
+  Freelance: {
+    summary:
+      'Various contract engagements including a ticket exchange web application (Angular, Firebase, AWS) and a Python web scraper for restaurant menu and pricing data aggregation.',
+    stack: 'Angular · Node.js · TypeScript · Firebase · Python · AWS',
   },
 }
 
